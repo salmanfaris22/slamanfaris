@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Intro from '../components/Intro.astro';
+import Sculpture from '../components/Sculpture.astro';
+import Gallery from '../components/Gallery.astro';
+import StorySections from '../components/StorySections.astro';
+import { profile } from '../data/portfolio';
+---
+<Layout>
+  <Intro />
+  <div class="custom-cursor" aria-hidden="true"><span></span></div>
+  <header class="site-header section-shell">
+    <a class="wordmark" href="#home" aria-label="Salman Faris home">sf<span>®</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#work">Work <span>05</span></a><a href="#about">About</a><a href="#process">Process</a></nav>
+    <a class="header-contact" href="#contact">Let’s talk <span>↗</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><span></span><span></span></button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" inert><a href="#work">Selected work <sup>01</sup></a><a href="#about">About me <sup>02</sup></a><a href="#skills">The toolkit <sup>03</sup></a><a href="#process">My process <sup>04</sup></a><a href="#contact">Let’s talk ↗</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero section-shell" id="home" aria-labelledby="hero-title">
+      <div class="hero-topline"><span class="eyebrow"><i class="status-dot"></i> AVAILABLE FOR CREATIVE PROJECTS</span><span class="hero-edition mono">INDEPENDENT CREATIVE · VOL. 01 / 2026</span></div>
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="hero-kicker mono">A MIND AT THE INTERSECTION OF</p>
+          <h1 id="hero-title" aria-label="Salman Faris"><span class="name-line"><span>SALMAN</span></span><span class="name-line"><span>FARIS<span class="name-dot">.</span></span></span></h1>
+          <div class="hero-discipline"><span>VIDEO EDITOR</span><i></i><span>CREATIVE DEVELOPER</span><i></i><span>FULL-STACK DEVELOPER</span></div>
+          <p class="hero-description">I turn creative ideas into cinematic visuals<br class="desktop-break"/> and powerful digital experiences.</p>
+          <div class="hero-actions"><a href="#work" class="button button-lime magnetic">Explore my work <span>↗</span></a><a href="#contact" class="hero-secondary">Let’s collaborate <span>↗</span></a></div>
+        </div>
+        <div class="hero-art" data-cursor="MOVE">
+          <div class="art-cross cross-top">+</div><div class="art-cross cross-bottom">+</div>
+          <div class="sculpture-container"><Sculpture /></div>
+          <div class="floating-tag tag-motion"><span class="tag-icon">Ae</span><span>MOTION WITH MEANING</span><span class="tag-dot"></span></div>
+          <div class="floating-tag tag-code"><span class="tag-code-icon">&lt;/&gt;</span><span>BUILT TO FEEL DIFFERENT</span></div>
+          <span class="art-caption mono">FIG. 01 — THE CREATIVE LOOP</span>
+          <span class="art-coordinate mono">↗ 11.25° N / 75.78° E</span>
+        </div>
+      </div>
+      <div class="hero-footer"><a href="#work" class="scroll-cue mono"><span>↓</span> SCROLL TO DISCOVER</a><p>Good stories move you.<br/>Great experiences stay with you.</p><div class="hero-location mono"><span class="small-star">✳</span> BASED IN INDIA<br/><span>CREATING EVERYWHERE</span></div></div>
+    </section>
+    <div class="discipline-band" aria-label="Storytelling, motion design, creative development"><div class="band-track" aria-hidden="true">STORYTELLING <span>✳</span> MOTION DESIGN <span>✳</span> CREATIVE DEVELOPMENT <span>✳</span> STORYTELLING <span>✳</span> MOTION DESIGN <span>✳</span> CREATIVE DEVELOPMENT <span>✳</span></div></div>
+    <section class="selected-work section-shell" id="work" aria-labelledby="work-title">
+      <div class="section-topline"><p class="eyebrow"><span class="section-index">01 /</span> SELECTED WORK</p><p class="mono subtle">A LITTLE BIT OF EVERYTHING. A LOT OF INTENTION.</p></div>
+      <div class="work-heading" data-reveal><h2 id="work-title" class="section-heading">Ideas made<br/><span class="serif-accent">impossible to ignore.</span></h2><p>A selection of concepts at the intersection<br/>of story, design, and technology.<br/><span class="subtle">Different mediums. Same obsession.</span></p></div>
+      <Gallery />
+      <noscript><p>Project previews require JavaScript. Explore the <a href="/images/after-hours.svg">After Hours artwork</a> or <a href="#contact">get in touch</a>.</p></noscript>
+    </section>
+    <section class="statement-section" aria-label="Creative philosophy"><div class="statement-grid" aria-hidden="true"></div><div class="statement-inner"><p class="eyebrow">THE SPACE BETWEEN DISCIPLINES</p><h2 class="statement-text"><span data-word>Some think in</span> <em data-word>frames.</em><br/><span data-word>Some think in</span> <em data-word>code.</em><br/><span data-word>I see the</span> <strong data-word>whole picture.</strong></h2><span class="statement-symbol" aria-hidden="true">✳</span><p>Where storytelling meets engineering,<br/>something different happens.</p></div></section>
+    <StorySections />
+    <section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+      <div class="section-topline"><p class="eyebrow"><span class="section-index">06 /</span> THE NEXT CHAPTER</p><span class="eyebrow"><i class="status-dot"></i> OPEN FOR COLLABORATIONS</span></div>
+      <div class="contact-main"><h2 id="contact-title" data-reveal>Have an idea?<br/>Let’s make it <span class="serif-accent">real.</span></h2><a class="contact-orb magnetic" href={`mailto:${profile.email}`} aria-label="Email Salman Faris"><span>LET’S TALK</span><svg width="62" height="62" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M10 38L38 10M10 10H38V38" stroke="currentColor" stroke-width="2"/></svg></a></div>
+      <div class="contact-details"><div><p>Big idea, small question, or just a hello.<br/>My inbox is always open.</p><a class="email-link" href={`mailto:${profile.email}`}>{profile.email} <span>↗</span></a><button class="copy-email mono" data-email={profile.email}>COPY EMAIL <span>⧉</span></button><span class="copy-status sr-only" role="status"></span></div><div class="social-links">{[{label:'GitHub',url:profile.github},{label:'Instagram',url:profile.instagram},{label:'LinkedIn',url:profile.linkedin},{label:'Behance',url:profile.behance},{label:'WhatsApp',url:profile.whatsapp}].map(s=>s.url?<a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}<span>↗</span></a>:<span class="social-pending">{s.label}<small>COMING SOON</small></span>)}</div></div>
+    </section>
+  </main>
+  <footer class="site-footer section-shell"><a class="wordmark" href="#home" aria-label="Back to top">sf<span>®</span></a><p>Designed & Developed by Salman Faris</p><span class="mono">© {new Date().getFullYear()}</span><a href="#home" class="back-top mono">BACK TO TOP ↑</a></footer>
+</Layout>

@@ -1,0 +1,129 @@
+---
+import '../styles/story.css';
+
+const disciplines = [
+  { number: '01', name: 'Video & motion', label: 'VIDEO EDITING & MOTION DESIGN', symbol: '↗', note: 'A feeling. A frame. A story worth staying for.', skills: ['Adobe After Effects', 'Adobe Premiere Pro', 'DaVinci Resolve', 'Motion Graphics', 'Visual Storytelling', 'Color Grading'] },
+  { number: '02', name: 'Code & systems', label: 'FULL-STACK DEVELOPMENT', symbol: '</>', note: 'Beautiful on the outside. Thoughtful underneath.', skills: ['React.js', 'Next.js', 'JavaScript', 'TypeScript', 'Node.js', 'Golang', 'REST APIs', 'MongoDB', 'SQL'] },
+  { number: '03', name: 'Design & direction', label: 'CREATIVE & DESIGN', symbol: '✳', note: 'Finding the unexpected in the everyday.', skills: ['UI/UX Design', 'Figma', 'Animation', 'Creative Direction', 'Digital Experiences'] },
+];
+const process = [
+  { title: 'Imagine', description: 'Understand the idea and explore possibilities.', detail: 'Every good project starts with a better question. What should someone feel, understand, or do?' },
+  { title: 'Design', description: 'Transform ideas into visual concepts.', detail: 'Find the visual language. Shape the story, map the experience, and make room for a little surprise.' },
+  { title: 'Create', description: 'Build, animate, edit, and develop.', detail: 'This is where the disciplines meet. Thoughtful code, expressive motion, and every frame in its place.' },
+  { title: 'Refine', description: 'Polish every detail and optimize.', detail: 'Watch it again. Test it on another screen. Tune the timing, simplify the interaction, and make it feel effortless.' },
+  { title: 'Deliver', description: 'Launch the final experience.', detail: 'A considered handoff, a confident launch, and something that works as beautifully as it looks.' },
+];
+// Replace these editorial milestones with verified roles and dates when available.
+const journey = [
+  { title: 'Story', category: 'THE FOUNDATION', text: 'Learning to see the narrative inside an ordinary moment.' },
+  { title: 'Motion', category: 'THE EXPRESSION', text: 'Giving ideas rhythm, character, and a life beyond the still frame.' },
+  { title: 'Code', category: 'THE CONNECTION', text: 'Turning visual ideas into experiences people can actually use.' },
+  { title: 'What’s next', category: 'THE POSSIBILITY', text: 'Bringing it all together. Maybe on something we make together.' },
+];
+---
+
+<section id="about" class="about-section section-shell" aria-labelledby="about-heading">
+  <div class="story-section-label"><span class="eyebrow">02 / THE PERSON BEHIND THE PIXELS</span><span class="small-cross" aria-hidden="true">✳</span></div>
+  <div class="about-layout">
+    <div class="about-portrait" data-reveal>
+      <div class="portrait-grid" aria-hidden="true"></div>
+      <span class="portrait-corner portrait-corner-a" aria-hidden="true"></span>
+      <span class="portrait-corner portrait-corner-b" aria-hidden="true"></span>
+      <div class="portrait-coordinates" aria-hidden="true">STORY × MOTION × CODE</div>
+      <svg class="portrait-art" viewBox="0 0 420 520" role="img" aria-labelledby="portrait-title">
+        <title id="portrait-title">Abstract profile artwork, a placeholder for Salman’s portrait</title>
+        <defs>
+          <linearGradient id="portrait-body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b7ce80"/><stop offset=".48" stop-color="#596447"/><stop offset="1" stop-color="#151c14"/></linearGradient>
+          <linearGradient id="portrait-head" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d3ddbc"/><stop offset=".5" stop-color="#8c9c71"/><stop offset="1" stop-color="#2d3a24"/></linearGradient>
+          <pattern id="portrait-lines" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 0h5" stroke="#0b0c0a" stroke-opacity=".3" stroke-width="1"/></pattern>
+        </defs>
+        <circle cx="210" cy="236" r="151" fill="none" stroke="#d5ff5f" stroke-opacity=".2"/>
+        <circle cx="210" cy="236" r="170" fill="none" stroke="#d5ff5f" stroke-opacity=".08" stroke-dasharray="3 7"/>
+        <path d="M57 520c0-102 12-174 90-198l29-10h68l29 10c78 24 90 96 90 198Z" fill="url(#portrait-body)"/>
+        <path d="m181 272-5 50c3 24 65 24 68 0l-5-50Z" fill="url(#portrait-head)"/>
+        <path d="M143 203c0-62 25-93 67-93s67 31 67 93c0 55-28 108-67 108s-67-53-67-108Z" fill="url(#portrait-head)"/>
+        <path d="M143 207c-9-67 20-110 69-110 40 0 70 29 65 87-34-1-73-14-95-36-5 31-18 50-39 59Z" fill="#222b1b"/>
+        <path d="M57 520c0-102 12-174 90-198l29-10h68l29 10c78 24 90 96 90 198Z" fill="url(#portrait-lines)"/>
+        <path d="M57 520c0-102 12-174 90-198" fill="none" stroke="#d5ff5f" stroke-opacity=".55"/>
+        <path d="M143 203c0-62 25-93 67-93" fill="none" stroke="#e9f6ca" stroke-opacity=".7"/>
+      </svg>
+      <span class="portrait-floating-tag portrait-tag-one">Always curious ↗</span>
+      <span class="portrait-floating-tag portrait-tag-two">Built differently.</span>
+      <div class="portrait-caption"><span>SALMAN FARIS</span><span>PORTRAIT PLACEHOLDER</span></div>
+    </div>
+    <div class="about-copy">
+      <h2 id="about-heading" class="about-heading" data-reveal>Not just a<br />developer.<br />Not just an editor.<br /><span>A creator.</span></h2>
+      <p class="about-intro" data-reveal>I work where storytelling, design, motion, and engineering meet.</p>
+      <p class="about-description" data-reveal>I’m Salman — a video editor, motion designer, and full-stack developer. I turn creative ideas into cinematic visuals and powerful digital experiences. From the first frame to the final line of code, I care about how it feels, and how it works.</p>
+      <a class="about-link" href="#contact" data-cursor="Say hello">Good things start with a conversation <span aria-hidden="true">↗</span></a>
+      <div class="about-stats" aria-label="Three creative disciplines, one creative mindset, infinite possibilities" data-reveal>
+        <div><span class="stat-number" data-count="3">03</span><span class="stat-label">DISCIPLINES</span></div>
+        <div><span class="stat-number" data-count="1">01</span><span class="stat-label">CREATIVE MINDSET</span></div>
+        <div><span class="stat-number">∞</span><span class="stat-label">POSSIBILITIES</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-section section-shell" aria-labelledby="skills-heading">
+  <div class="story-section-label"><span class="eyebrow">03 / THE CREATIVE TOOLKIT</span><span class="eyebrow skills-side-label">DIFFERENT TOOLS. ONE VISION.</span></div>
+  <div class="skills-heading-row" data-reveal>
+    <h2 id="skills-heading" class="section-heading">A little left brain.<br /><span class="muted-heading">A lot of right brain.</span></h2>
+    <p>The best ideas don’t fit in one box.<br />Neither does my toolkit.</p>
+  </div>
+  <div class="skill-disciplines">
+    {disciplines.map((discipline) => (
+      <details class="skill-discipline" open data-reveal>
+        <summary>
+          <span class="skill-index">{discipline.number}</span>
+          <span class="skill-name">{discipline.name}<span class="skill-category">{discipline.label}</span></span>
+          <span class="skill-symbol" aria-hidden="true">{discipline.symbol}</span>
+          <span class="skill-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="skill-content">
+          <p>{discipline.note}</p>
+          <ul class="skill-tags" aria-label={`${discipline.name} skills`}>
+            {discipline.skills.map((skill) => <li>{skill}</li>)}
+          </ul>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<section id="process" class="process-section" aria-labelledby="process-heading">
+  <div class="section-shell">
+    <div class="story-section-label"><span class="eyebrow">04 / HOW THE MAGIC HAPPENS</span><span class="eyebrow">FROM WHAT IF TO WHAT’S NEXT</span></div>
+    <div class="process-heading-row" data-reveal><h2 id="process-heading" class="section-heading">A good idea is<br />only the beginning.</h2><p>Part intuition. Part intention.<br />Every detail has a purpose.</p></div>
+    <div class="process-layout">
+      <div class="process-visual" aria-hidden="true">
+        <div class="process-visual-top"><span>THE CREATIVE PROCESS</span><span>↗</span></div>
+        <div class="process-orbit"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="process-visual-bottom"><span class="process-number">01</span><span class="process-visual-note">IDEAS IN MOTION.<br />ALWAYS FORWARD.</span></div>
+      </div>
+      <ol class="process-steps">
+        {process.map((step, index) => (
+          <li class:list={['process-step', { 'is-active': index === 0 }]} data-step={index + 1}>
+            <span class="process-step-index">0{index + 1}</span>
+            <div><h3>{step.title}</h3><p class="process-step-description">{step.description}</p><p class="process-step-detail">{step.detail}</p></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="journey" class="journey-section section-shell" aria-labelledby="journey-heading">
+  <div class="story-section-label"><span class="eyebrow">05 / ALWAYS IN THE MAKING</span><span class="small-cross" aria-hidden="true">✳</span></div>
+  <div class="journey-heading-row" data-reveal><h2 id="journey-heading" class="section-heading">Curiosity is<br />the through line.</h2><p>A creative journey across disciplines.<br /><span class="journey-editorial-note">Career roles and dates to be added.</span></p></div>
+  <ol class="journey-timeline">
+    {journey.map((milestone, index) => (
+      <li class="journey-milestone" data-reveal>
+        <div class="journey-rail" aria-hidden="true"><span class="journey-node"></span><span class="journey-line"></span></div>
+        <span class="eyebrow journey-category">{milestone.category}</span>
+        <h3>{milestone.title}<span aria-hidden="true">{index === journey.length - 1 ? '↗' : '→'}</span></h3>
+        <p>{milestone.text}</p>
+      </li>
+    ))}
+  </ol>
+</section>

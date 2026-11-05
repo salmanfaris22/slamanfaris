@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {projects} from '../../data/portfolio';
+export function getStaticPaths() { return projects.map(project=>({params:{id:project.id},props:{project}})); }
+const { project } = Astro.props;
+---
+<Layout interactive={false}>
+  <header class="site-header section-shell"><a class="wordmark" href="/" aria-label="Salman Faris home">sf<span>®</span></a><a href="/#work" class="text-link">← All work</a></header>
+  <main id="main" class="section-shell" style="padding-top:60px;padding-bottom:80px;max-width:1100px">
+    <p class="eyebrow">{project.year} / {project.discipline}</p><h1 style="font-size:clamp(44px,7vw,100px);margin:24px 0;line-height:1.1">{project.title}</h1><img src={project.image} alt={`${project.title} concept artwork`} width="1200" height="850" style="width:100%;border-radius:4px"/>
+    <p class="dialog-description">{project.description}</p><div class="tool-tags">{project.tools.map(tool=><span>{tool}</span>)}</div><div class="dialog-columns"><div><h2>The idea</h2><p>{project.challenge}</p></div><div><h2>The approach</h2><p>{project.approach}</p></div></div><p class="concept-note">Concept showcase · Placeholder media · No client affiliation</p><a class="button button-lime" href="/#contact">Let’s create something like this ↗</a>
+  </main>
+</Layout>

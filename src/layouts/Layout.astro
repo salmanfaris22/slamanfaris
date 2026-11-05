@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+const { interactive = true } = Astro.props;
+const title = 'Salman Faris — Video Editor, Motion Designer & Creative Developer';
+const description = 'Story, motion, and code. Explore the creative world of Salman Faris — video editor, motion designer, and full-stack developer.';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0c0a" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/og.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <slot />
+    {interactive && <script>import '../scripts/experience';</script>}
+  </body>
+</html>
