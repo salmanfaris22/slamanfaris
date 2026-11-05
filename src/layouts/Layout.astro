@@ -1,8 +1,9 @@
 ---
 import '../styles/global.css';
-const { interactive = true } = Astro.props;
-const title = 'Salman Faris — Video Editor, Motion Designer & Creative Developer';
-const description = 'Story, motion, and code. Explore the creative world of Salman Faris — video editor, motion designer, and full-stack developer.';
+interface Props { interactive?: boolean; pageTitle?: string; pageDescription?: string; }
+const { interactive = true, pageTitle, pageDescription } = Astro.props;
+const title = pageTitle || 'Salman Faris — Video Editor, Motion Designer & Creative Developer';
+const description = pageDescription || 'Story, motion, and code. Explore the creative world of Salman Faris — video editor, motion designer, and full-stack developer.';
 ---
 <!doctype html>
 <html lang="en">
@@ -14,12 +15,17 @@ const description = 'Story, motion, and code. Explore the creative world of Salm
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/og.png" />
+    <meta property="og:image" content={new URL('/images/og.png', Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/images/og.png" />
+    <meta name="twitter:image" content={new URL('/images/og.png', Astro.site).href} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
   </head>
   <body>

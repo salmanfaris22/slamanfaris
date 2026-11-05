@@ -39,15 +39,15 @@ export function initSculpture() {
       scene.add(group);
       const geometry = new THREE.TorusKnotGeometry(1.42, .47, 240, 40, 2, 3);
       const material = new THREE.MeshPhysicalMaterial({
-        color: 0xc9f665, metalness: .94, roughness: .21,
-        clearcoat: 1, clearcoatRoughness: .16, envMapIntensity: 1.45,
+        color: 0xe00808, metalness: .94, roughness: .21,
+        clearcoat: .5, clearcoatRoughness: .16, envMapIntensity: 1,
       });
       const knot = new THREE.Mesh(geometry, material);
       group.add(knot);
-      const key = new THREE.DirectionalLight(0xf7ffda, 4.5);
+      const key = new THREE.DirectionalLight(0xffdada, 3);
       key.position.set(-4, 6, 5);
       scene.add(key);
-      const edge = new THREE.DirectionalLight(0xd5ff75, 3.5);
+      const edge = new THREE.DirectionalLight(0xff4a4a, 3.5);
       edge.position.set(4, -2, -3);
       scene.add(edge);
       const fill = new THREE.DirectionalLight(0xffffff, 1.4);

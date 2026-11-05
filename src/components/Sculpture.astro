@@ -6,26 +6,26 @@
   <svg class="sculpture__fallback" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="sculpture-metal" x1="135" y1="130" x2="510" y2="505" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#eeffb1"/><stop offset=".12" stop-color="#b2d956"/><stop offset=".25" stop-color="#293c13"/><stop offset=".38" stop-color="#b6e969"/><stop offset=".48" stop-color="#f3ffd0"/><stop offset=".56" stop-color="#789b34"/><stop offset=".72" stop-color="#304513"/><stop offset=".86" stop-color="#a8d954"/><stop offset="1" stop-color="#e5ff9f"/>
+        <stop stop-color="#ffb1b1"/><stop offset=".12" stop-color="#e24d4d"/><stop offset=".25" stop-color="#440b0b"/><stop offset=".38" stop-color="#ec6666"/><stop offset=".48" stop-color="#ffd0d0"/><stop offset=".56" stop-color="#b21d1d"/><stop offset=".72" stop-color="#4c0c0c"/><stop offset=".86" stop-color="#e24b4b"/><stop offset="1" stop-color="#ff9f9f"/>
       </linearGradient>
       <linearGradient id="sculpture-front" x1="140" y1="410" x2="490" y2="170" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#31400f"/><stop offset=".27" stop-color="#9ac33e"/><stop offset=".48" stop-color="#efffb7"/><stop offset=".57" stop-color="#d8ff77"/><stop offset=".74" stop-color="#476316"/><stop offset="1" stop-color="#b3df56"/>
+        <stop stop-color="#440b0b"/><stop offset=".27" stop-color="#dc2525"/><stop offset=".48" stop-color="#ffb7b7"/><stop offset=".57" stop-color="#ff7777"/><stop offset=".74" stop-color="#681111"/><stop offset="1" stop-color="#e35252"/>
       </linearGradient>
       <filter id="sculpture-shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="13"/></filter>
       <filter id="sculpture-soft"><feGaussianBlur stdDeviation="2.1"/></filter>
       <path id="sculpture-knot" d="M320 162 C441 82 544 174 481 293 C427 393 210 514 153 421 C91 321 248 109 351 156 C460 205 474 433 357 466 C237 499 120 294 179 211 C239 127 443 253 453 356 C466 478 259 491 203 382 C147 273 229 221 320 162 Z"/>
     </defs>
-    <ellipse cx="326" cy="519" rx="160" ry="18" fill="#9bc84b" opacity=".10" filter="url(#sculpture-shadow)"/>
+    <ellipse cx="326" cy="519" rx="160" ry="18" fill="#de3535" opacity=".10" filter="url(#sculpture-shadow)"/>
     <g transform="rotate(-19 320 320)">
       <use href="#sculpture-knot" transform="translate(2 12)" stroke="#000" stroke-width="70" filter="url(#sculpture-shadow)" opacity=".8"/>
-      <use href="#sculpture-knot" stroke="#29380e" stroke-width="64"/>
+      <use href="#sculpture-knot" stroke="#3c0a0a" stroke-width="64"/>
       <use href="#sculpture-knot" stroke="url(#sculpture-metal)" stroke-width="60"/>
-      <use href="#sculpture-knot" stroke="#defe9c" stroke-width="43" opacity=".11"/>
-      <use href="#sculpture-knot" transform="translate(-7 -9)" stroke="#f5ffce" stroke-width="4" opacity=".37" filter="url(#sculpture-soft)"/>
+      <use href="#sculpture-knot" stroke="#fe9c9c" stroke-width="43" opacity=".11"/>
+      <use href="#sculpture-knot" transform="translate(-7 -9)" stroke="#ffcece" stroke-width="4" opacity=".37" filter="url(#sculpture-soft)"/>
       <path d="M194 395 C173 322 237 223 320 162 C365 129 413 119 453 143" stroke="url(#sculpture-front)" stroke-width="60" stroke-linecap="round"/>
-      <path d="M188 385 C173 310 245 215 320 162 C363 133 406 123 447 143" stroke="#edffbe" stroke-width="3" stroke-linecap="round" opacity=".66"/>
+      <path d="M188 385 C173 310 245 215 320 162 C363 133 406 123 447 143" stroke="#ffbebe" stroke-width="3" stroke-linecap="round" opacity=".66"/>
       <path d="M452 325 C476 398 424 466 357 466 C303 467 267 438 237 410" stroke="url(#sculpture-metal)" stroke-width="60" stroke-linecap="round"/>
-      <path d="M444 328 C463 397 415 451 357 454 C307 455 275 429 248 405" stroke="#e9ffb4" stroke-width="3" stroke-linecap="round" opacity=".43"/>
+      <path d="M444 328 C463 397 415 451 357 454 C307 455 275 429 248 405" stroke="#ffb4b4" stroke-width="3" stroke-linecap="round" opacity=".43"/>
     </g>
   </svg>
   <canvas class="sculpture__canvas" data-sculpture-canvas></canvas>
@@ -36,7 +36,7 @@
 </script>
 <style>
   .sculpture { position: relative; width: 100%; height: 100%; isolation: isolate; }
-  .sculpture__halo { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(ellipse, rgba(169, 205, 75, .085), transparent 68%); }
+  .sculpture__halo { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(ellipse, rgba(223, 57, 57, .085), transparent 68%); }
   .sculpture__fallback, .sculpture__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .sculpture__fallback { opacity: 1; transition: opacity .65s ease; }
   .sculpture__canvas { opacity: 0; transition: opacity .65s ease; pointer-events: none; }
