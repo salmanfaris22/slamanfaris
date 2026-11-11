@@ -1,0 +1,63 @@
+---
+import { flagshipCards, lecternLayers, lecternMetrics } from '../../data/home';
+import { projectById } from '../../data/portfolio';
+import ExternalIcon from '../ExternalIcon.astro';
+import SectionHead from '../SectionHead.astro';
+const cards = flagshipCards.map((card) => ({ ...card, project: projectById(card.id) }));
+---
+<section id="flagships" class="section" aria-labelledby="flagships-title">
+  <div class="wrap">
+    <SectionHead tag="SELECTED BUILDS" title="Flagship Projects" id="flagships-title" desc="Real software and motion work: a native video editor, a Go web framework, a private phone-to-Mac remote and a 30-part reel series." />
+    <div class="flagships">
+      <article class="card flagship-main">
+        <div class="flagship-glow" aria-hidden="true"></div>
+        <div class="flagship-top">
+          <span class="chip"><span aria-hidden="true">●</span> CORE PROJECT</span>
+          <span class="flagship-meta">C++23 engine • Qt 6 Quick • FFmpeg libraries</span>
+        </div>
+        <h3 class="flagship-title"><a href="/projects/lectern/">Lectern — Native Screen Recorder &amp; Editor</a></h3>
+        <p class="flagship-desc">A native, high-performance screen recorder and editor for teachers and course creators. Screen, cameras, microphone and system audio are recorded as separate, synchronized tracks, so layouts can change after recording without recording again.</p>
+        <div class="metrics">
+          {lecternMetrics.map((metric) => <div class="metric"><div class="metric-value">{metric.value}</div><div class="metric-label">{metric.label}</div></div>)}
+        </div>
+        <div class="explorer">
+          <div class="explorer-head">
+            <h4 class="explorer-title">7-LAYER ENGINE STACK</h4>
+            <p class="explorer-sub">Select a layer to see how it works</p>
+          </div>
+          <div class="layer-tabs" role="tablist" aria-label="Lectern engine layers">
+            {lecternLayers.map((layer, index) => (
+              <button type="button" class="layer-tab" role="tab" id={`layer-tab-${index + 1}`} aria-controls={`layer-panel-${index + 1}`} aria-selected={index === 0 ? 'true' : 'false'} tabindex={index === 0 ? 0 : -1}>{layer.tab}</button>
+            ))}
+          </div>
+          <div class="layer-pane">
+            {lecternLayers.map((layer, index) => (
+              <div class:list={['layer-panel', { 'is-active': index === 0 }]} id={`layer-panel-${index + 1}`} role="tabpanel" aria-labelledby={`layer-tab-${index + 1}`} tabindex="0">
+                <p class="layer-badge">{layer.badge}</p>
+                <h4 class="layer-title">{layer.title}</h4>
+                <p class="layer-text">{layer.text}</p>
+                <div class="tag-row">{layer.tags.map((tag) => <span class="tech-tag">{tag}</span>)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </article>
+      <div class="flagship-grid">
+        {cards.map((card) => (
+          <article class="card flagship-card">
+            <div class="flagship-card-top">
+              <div class="card-badges">
+                <span class="chip">{card.badge}</span>
+                {card.project.repoUrl && <a class="icon-link" href={card.project.liveUrl ?? card.project.repoUrl} target="_blank" rel="noopener noreferrer" aria-label={`Open ${card.project.title}`}><ExternalIcon /></a>}
+              </div>
+              <h3 class="card-title"><a href={`/projects/${card.id}/`}>{card.title}</a></h3>
+              <p class="card-text">{card.project.description}</p>
+              <ul class="spec-list">{card.specs.map((spec) => <li>{spec}</li>)}</ul>
+            </div>
+            <div class="card-foot">{card.tags.map((tag) => <span class="tech-tag">{tag}</span>)}</div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

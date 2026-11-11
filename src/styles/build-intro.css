@@ -1,0 +1,53 @@
+/* The page-build intro on the home page. Nothing here applies unless the script runs. */
+.bi-pending { visibility: hidden !important; }
+
+.bi-veil { position: fixed; inset: 0; z-index: 180; background: #050505; transform: scaleY(0); transform-origin: top; transition: transform .52s cubic-bezier(.7, 0, .3, 1), opacity .36s ease; }
+.bi-veil.is-down { transform: scaleY(1); }
+.bi-veil.is-gone { opacity: 0; }
+.bi-scanline { position: fixed; left: 0; right: 0; top: 0; z-index: 181; height: 2px; background: var(--red); box-shadow: 0 0 22px 3px rgba(239, 68, 68, .7); transform: translateY(-4px); transition: transform .52s cubic-bezier(.7, 0, .3, 1), opacity .2s ease; }
+.bi-scanline.is-down { transform: translateY(100vh); }
+.bi-scanline.is-gone { opacity: 0; }
+
+.bi-tile { position: fixed; left: 50%; top: 50%; z-index: 182; width: 60px; height: 60px; margin: -30px 0 0 -30px; display: grid; place-items: center; background: var(--red); color: #000; font: 800 22px/1 var(--sans); letter-spacing: -.02em; border-radius: 10px; opacity: 0; transform: scale(.82); transition: opacity .24s ease, transform .4s var(--ease); }
+.bi-tile.is-on { opacity: 1; transform: scale(1); }
+
+.bi-stage { position: absolute; left: 0; top: 0; width: 100%; z-index: 190; overflow: hidden; pointer-events: none; }
+
+.bi-cursor { position: absolute; left: 0; top: 0; z-index: 3; will-change: transform; transition: opacity .3s ease; }
+.bi-cursor.is-off { opacity: 0; }
+/* max-width: none because the cursor box itself has no width */
+.bi-cursor svg { position: absolute; left: 0; top: 0; display: none; max-width: none; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .55)); }
+.bi-cursor[data-mode='arrow'] .bi-g-arrow, .bi-cursor[data-mode='draw'] .bi-g-draw, .bi-cursor[data-mode='type'] .bi-g-type { display: block; }
+.bi-cursor .bi-g-draw { transform: translate(-10px, -10px); }
+.bi-cursor .bi-g-type { transform: translate(-7px, -11px); }
+.bi-name { position: absolute; left: 15px; top: 17px; padding: 2px 6px; border-radius: 3px 8px 8px 8px; color: #000; font: 700 10px/1.3 var(--mono); white-space: nowrap; }
+
+.bi-box { position: absolute; left: 0; top: 0; z-index: 2; border: 1px solid #38a3ff; display: none; }
+.bi-box.is-on { display: block; }
+.bi-box i { position: absolute; width: 7px; height: 7px; background: #fff; border: 1px solid #38a3ff; }
+.bi-box i:nth-child(1) { left: -4px; top: -4px; }
+.bi-box i:nth-child(2) { right: -4px; top: -4px; }
+.bi-box i:nth-child(3) { left: -4px; bottom: -4px; }
+.bi-box i:nth-child(4) { right: -4px; bottom: -4px; }
+.bi-box b { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); padding: 1px 6px; background: #38a3ff; color: #fff; border-radius: 3px; font: 700 10px/1.5 var(--sans); white-space: nowrap; }
+.bi-box.is-text i, .bi-box.is-text b { display: none; }
+
+.bi-pill { position: fixed; left: 50%; bottom: 20px; z-index: 195; display: flex; align-items: center; gap: 10px; max-width: calc(100vw - 20px); padding: 7px 8px 7px 14px; background: rgba(18, 18, 20, .94); border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px; color: #d6d6dc; font: 600 12px/1 var(--sans); transform: translateX(-50%); transition: opacity .3s ease, transform .3s var(--ease); white-space: nowrap; }
+.bi-pill.is-off { opacity: 0; transform: translate(-50%, 16px); }
+.bi-crew { display: flex; }
+.bi-crew i { width: 16px; height: 16px; margin-left: -5px; border-radius: 50%; border: 2px solid #121214; }
+.bi-crew i:first-child { margin-left: 0; }
+.bi-sep { width: 1px; height: 14px; background: rgba(255, 255, 255, .16); }
+.bi-count { font-variant-numeric: tabular-nums; }
+.bi-count strong { color: #fff; font-weight: 700; }
+.bi-track { width: 64px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .14); overflow: hidden; }
+.bi-track i { display: block; height: 100%; width: 0; background: #38a3ff; }
+.bi-btn { min-width: 30px; height: 28px; padding: 0 9px; border: 0; border-radius: 7px; background: rgba(255, 255, 255, .09); color: #fff; font: 700 12px/1 var(--sans); cursor: pointer; }
+.bi-btn:hover { background: rgba(255, 255, 255, .18); }
+.bi-btn[aria-pressed='true'] { background: rgba(56, 163, 255, .22); color: #8fcbff; }
+
+@media (max-width: 640px) {
+  .bi-track, .bi-crew, .bi-crew + .bi-sep { display: none; }
+  .bi-pill { bottom: 12px; gap: 8px; padding-left: 12px; }
+  .bi-name { display: none; }
+}

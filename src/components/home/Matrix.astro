@@ -1,0 +1,36 @@
+---
+import { matrixIds, projectById, type Category } from '../../data/portfolio';
+import ExternalIcon from '../ExternalIcon.astro';
+import SectionHead from '../SectionHead.astro';
+const cards = matrixIds.map(projectById);
+const filters: Category[] = ['All work', 'Development', 'Film & motion', 'Experiments'];
+---
+<section id="matrix" class="section" aria-labelledby="matrix-title">
+  <span id="work" aria-hidden="true"></span>
+  <div class="wrap">
+    <SectionHead tag="WORK INDEX" title="The Work Matrix" id="matrix-title" desc="Live websites, business systems and concept studies at the intersection of story, design and technology. Concept work is labelled.">
+      <div class="bento-controls js-only" role="group" aria-label="Filter projects">
+        {filters.map((filter, index) => <button type="button" class="filter-btn" data-filter={filter} aria-pressed={index === 0 ? 'true' : 'false'}>{filter === 'All work' ? `All work (${cards.length})` : filter}</button>)}
+      </div>
+    </SectionHead>
+    <p id="matrix-status" class="sr-only" role="status"></p>
+    <div class="bento-grid">
+      {cards.map((project) => (
+        <article class="card bento-card" data-category={project.category}>
+          <div>
+            <div class="bento-top">
+              <span class="chip">{project.category}</span>
+              {project.liveUrl
+                ? <a class="icon-link" href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} live site`}><ExternalIcon /></a>
+                : <span class="bento-id">{project.status === 'concept' ? project.year : project.year}</span>}
+            </div>
+            <h3 class="bento-title"><a href={`/projects/${project.id}/`}>{project.title}</a></h3>
+            <p class="bento-text">{project.description}</p>
+          </div>
+          <div class="bento-foot"><div class="tag-row">{project.tools.slice(0, 3).map((tool) => <span class="tag">{tool}</span>)}</div></div>
+        </article>
+      ))}
+    </div>
+    <p class="section-desc" style="margin-top:28px"><a class="text-link" href="/projects/">See all projects and case studies</a></p>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+---
+import { profile } from '../data/portfolio';
+import { locales } from '../data/i18n';
+import { footerGroups } from '../lib/services';
+interface Props { home?: boolean; }
+const { home = false } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <nav class="footer-grid" aria-label="Footer">
+      {footerGroups.map((group) => (
+        <div>
+          <h2 class="footer-title">{group.title}</h2>
+          <ul class="footer-list">{group.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>
+        </div>
+      ))}
+      <div>
+        <h2 class="footer-title">Salman Faris</h2>
+        <ul class="footer-list">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/projects/">Portfolio</a></li>
+          <li><a href="/courses/">Courses</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/locations/kozhikode/">Kozhikode</a></li>
+          <li><a href="/locations/kerala/">Kerala</a></li>
+          <li><a href="/locations/india/">Remote and worldwide</a></li>
+          <li><a href="/best-developer-in-kerala/">Developer in Kerala</a></li>
+          <li><a href="/workshops/">Workshops</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          {home && <li><button type="button" data-replay-build>Replay the build</button></li>}
+        </ul>
+      </div>
+    </nav>
+    <div class="footer-base">
+      <span dir="ltr">© {year} {profile.name}. {profile.city} ({profile.cityLocal}), {profile.region}, {profile.country}.</span>
+      <nav class="lang-list" aria-label="Languages">{locales.map((locale) => <a href={`/${locale.code}/`} lang={locale.code} hreflang={locale.code}>{locale.name}</a>)}</nav>
+      <span class="mono" dir="ltr">STORY. MOTION. CODE.</span>
+    </div>
+  </div>
+</footer>

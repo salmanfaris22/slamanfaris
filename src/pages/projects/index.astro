@@ -1,0 +1,34 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/portfolio';
+import PageShell from '../../layouts/PageShell.astro';
+import { absolute, breadcrumbNode, webPageNode } from '../../lib/schema';
+
+const path = '/projects/';
+const title = 'Portfolio and Case Studies | Salman Faris';
+const description = 'Projects by Salman Faris: native apps, Go frameworks, live business websites, AI pipelines and motion work. Real work and labelled concepts, with stacks and links.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Portfolio', path }];
+const built = projects.filter((p) => p.status === 'built');
+const concepts = projects.filter((p) => p.status === 'concept');
+const structuredData = [
+  webPageNode(path, title, description, { mainEntity: { '@type': 'ItemList', itemListElement: projects.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.title, url: absolute(`/projects/${p.id}/`) })) } }, 'CollectionPage'),
+  breadcrumbNode(path, crumbs),
+];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="PORTFOLIO" title="Projects and Case Studies" lead="Real software, live websites and motion work first, then concept studies. Every project says whether it is client work, a personal product or a concept." />
+  <section class="page-section" aria-labelledby="built-title">
+    <div class="wrap">
+      <h2 class="block-title" id="built-title" style="margin-bottom:20px">Real work</h2>
+      <div class="bento-grid">{built.map((project) => <ProjectCard project={project} />)}</div>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="concept-title">
+    <div class="wrap">
+      <h2 class="block-title" id="concept-title">Concepts and demos</h2>
+      <p class="block-desc">Self-initiated studies. These are not client work.</p>
+      <div class="bento-grid">{concepts.map((project) => <ProjectCard project={project} />)}</div>
+    </div>
+  </section>
+</PageShell>

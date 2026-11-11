@@ -1,0 +1,22 @@
+---
+import type { Project } from '../data/portfolio';
+import ExternalIcon from './ExternalIcon.astro';
+interface Props { project: Project; }
+const { project } = Astro.props;
+const label = project.status === 'concept' ? 'Concept' : project.year;
+const external = project.liveUrl ?? project.repoUrl;
+---
+<article class="card bento-card" data-category={project.category}>
+  <div>
+    <div class="bento-top">
+      <span class="chip">{project.category}</span>
+      <span class="bento-id">{label}</span>
+    </div>
+    <h3 class="bento-title"><a href={`/projects/${project.id}/`}>{project.title}</a></h3>
+    <p class="bento-text">{project.description}</p>
+  </div>
+  <div class="bento-foot card-foot">
+    <div class="tag-row">{project.tools.slice(0, 3).map((tool) => <span class="tag">{tool}</span>)}</div>
+    {external && <a class="icon-link" href={external} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title} ${project.liveUrl ? 'live site' : 'source code'}`}><ExternalIcon /></a>}
+  </div>
+</article>

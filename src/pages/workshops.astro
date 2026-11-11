@@ -1,0 +1,15 @@
+---
+import PageHero from '../components/PageHero.astro';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, webPageNode } from '../lib/schema';
+const path = '/workshops/';
+const title = 'Workshops and Events | Salman Faris';
+const description = 'Workshops and sessions by Salman Faris on AI, web development, SEO and video editing. No events are scheduled right now. Ask about a session for your group.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Workshops', path }];
+const structuredData = [webPageNode(path, title, description), breadcrumbNode(path, crumbs)];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData} noindex={true}>
+  <PageHero crumbs={crumbs} tag="WORKSHOPS AND EVENTS" title="No Workshops Scheduled Right Now" lead="Real sessions will be listed here with dates, venues and registration details. If you run a college, company or community group, you can ask about a session." >
+    <div class="page-actions"><a class="btn btn-red" href="/contact/#project" data-cta="workshop_enquiry">Ask about a session</a><a class="btn btn-glass" href="/courses/">Explore courses</a></div>
+  </PageHero>
+</PageShell>

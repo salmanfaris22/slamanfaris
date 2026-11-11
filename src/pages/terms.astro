@@ -1,0 +1,26 @@
+---
+import PageHero from '../components/PageHero.astro';
+import { profile } from '../data/portfolio';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, webPageNode } from '../lib/schema';
+const path = '/terms/';
+const title = 'Terms of Use | Salman Faris';
+const description = 'Terms for using salmanfaris.in: how site content may be used, how concept work is labelled, and how client and course agreements are handled separately.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Terms', path }];
+const structuredData = [webPageNode(path, title, description), breadcrumbNode(path, crumbs)];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="LEGAL" title="Terms of Use" lead="Last updated 7 November 2026." />
+  <section class="page-section"><div class="wrap prose">
+    <h2>Using this site</h2>
+    <p>Text, images and code samples on this site belong to {profile.name} unless stated otherwise. You may link to any page. Please ask before reusing the content.</p>
+    <h2>Accuracy</h2>
+    <p>Project details are kept as accurate as possible. Concept work is labelled as concept work, and planned courses are labelled as planned. Availability can change.</p>
+    <h2>Services</h2>
+    <p>Client work is covered by a separate written proposal that sets out the scope, price and timeline. Nothing on this site is a binding offer or a guarantee of search rankings or results.</p>
+    <h2>Courses</h2>
+    <p>Fees, batch dates and refund terms are confirmed in writing before you enrol.</p>
+    <h2>Contact</h2>
+    <p>Questions about these terms can be sent to <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
+  </div></section>
+</PageShell>

@@ -1,0 +1,44 @@
+---
+import { alternatesFor, locales, type LocaleCopy } from '../../data/i18n';
+import PageShell from '../../layouts/PageShell.astro';
+import { webPageNode } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { lang: locale.code }, props: { locale } }));
+}
+const { locale } = Astro.props as { locale: LocaleCopy };
+const copy = locale.courses;
+const path = `/${locale.code}/courses/`;
+const structuredData = [webPageNode(path, copy.title, copy.description, { inLanguage: locale.code }, 'CollectionPage')];
+---
+<PageShell pageTitle={copy.title} pageDescription={copy.description} structuredData={structuredData} lang={locale.code} dir={locale.dir} ogLocale={locale.ogLocale} alternates={alternatesFor('courses')}>
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="section-tag"><bdi>{copy.tag}</bdi></p>
+      <h1 class="page-title">{copy.h1}</h1>
+      <p class="page-lead">{copy.intro}</p>
+      <p class="note" style="margin-top:14px">{copy.statusNote}</p>
+      <div class="page-actions"><a class="btn btn-red" href="/contact/#course" data-cta={`${locale.code}_course`}>{copy.cta}</a></div>
+    </div>
+  </div>
+  <section class="page-section" aria-label={copy.tag}>
+    <div class="wrap bento-grid">
+      {copy.items.map((item) => (
+        <article class="card bento-card">
+          <div>
+            <div class="bento-top"><span class="chip">{item.status}</span></div>
+            <h2 class="bento-title"><a href={item.href}>{item.name}</a></h2>
+            <p class="bento-text">{item.text}</p>
+          </div>
+          <div class="bento-foot"><a class="text-link" href={item.href}>{copy.englishLink}</a></div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="l-where">
+    <div class="wrap">
+      <h2 class="block-title" id="l-where" style="margin-bottom:20px">{copy.whereTitle}</h2>
+      <div class="grid-3">{copy.where.map((item) => <div class="card"><h3 class="mini-title">{item.place}</h3><p class="mini-text">{item.text}</p></div>)}</div>
+    </div>
+  </section>
+</PageShell>

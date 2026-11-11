@@ -1,0 +1,44 @@
+/* Styles for the /best-developer-in-kerala landing page. Uses the shared tokens in global.css. */
+.seo-page{max-width:920px;padding-top:56px;padding-bottom:96px}
+.seo-breadcrumb{font-size:11px;color:var(--muted);margin-bottom:48px}
+.seo-breadcrumb a{color:var(--ink);border-bottom:1px solid var(--line)}
+.seo-hero{padding-bottom:72px;border-bottom:1px solid var(--line)}
+.seo-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.06;letter-spacing:-.05em;font-weight:500;margin:26px 0 28px}
+.seo-lead{font-size:clamp(17px,1.6vw,20px);line-height:1.7;color:var(--ink);max-width:640px}
+.seo-actions{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:36px}
+.seo-secondary{display:inline-flex;gap:10px;align-items:center;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:6px}
+.seo-secondary span{color:var(--accent)}
+.seo-section{padding-top:72px;scroll-margin-top:90px}
+.seo-section h2,.seo-cta h2{font-size:clamp(28px,3.4vw,44px);letter-spacing:-.04em;font-weight:500;line-height:1.15;margin:0 0 22px}
+.seo-section>p{font-size:15px;line-height:1.85;color:var(--muted);max-width:680px}
+.seo-note{font-family:'Geist Mono',monospace;font-size:11px!important;color:var(--muted)!important}
+.seo-cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.seo-card{border:1px solid var(--line);padding:26px;border-radius:4px;background:#11130f}
+.seo-card h3{font-size:20px;font-weight:500;letter-spacing:-.02em;margin:0 0 12px}
+.seo-card h3 a{border-bottom:1px solid var(--line)}
+.seo-card p{font-size:14px;line-height:1.75;color:var(--muted)}
+.seo-tools{margin-top:16px!important;font-size:10px!important;color:var(--accent)!important;letter-spacing:.04em}
+.seo-list{margin:0;padding:0;list-style:none;display:grid;gap:14px;max-width:680px}
+.seo-list li{font-size:15px;line-height:1.7;color:var(--ink);padding-left:28px;position:relative}
+.seo-list li:before{content:'✳';position:absolute;left:0;color:var(--accent)}
+.seo-steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:none}
+.seo-steps li{display:grid;grid-template-columns:50px 180px 1fr;gap:20px;padding:24px 0;border-top:1px solid var(--line);align-items:baseline}
+.seo-steps li:last-child{border-bottom:1px solid var(--line)}
+.seo-steps span{font-size:11px;color:var(--muted)}
+.seo-steps h3{font-size:22px;font-weight:500;letter-spacing:-.02em;margin:0}
+.seo-steps p{font-size:14px;line-height:1.7;color:var(--muted);margin:0}
+.seo-faq{display:grid;gap:0}
+.seo-faq-item{padding:24px 0;border-top:1px solid var(--line)}
+.seo-faq-item:last-child{border-bottom:1px solid var(--line)}
+.seo-faq-item h3{font-size:18px;font-weight:500;letter-spacing:-.02em;margin:0 0 10px}
+.seo-faq-item p{font-size:14px;line-height:1.8;color:var(--muted);max-width:680px}
+.seo-cta{margin-top:96px;padding:56px 0 0;border-top:1px solid var(--line)}
+.seo-cta p{font-size:15px;color:var(--muted);margin:0}
+@media(max-width:767px){
+  .seo-page{padding-top:36px;padding-bottom:72px}
+  .seo-cards{grid-template-columns:1fr}
+  .seo-steps li{grid-template-columns:36px 1fr;gap:6px 14px}
+  .seo-steps li p{grid-column:2}
+  .seo-steps li h3{grid-column:2}
+  .seo-section{padding-top:56px}
+}

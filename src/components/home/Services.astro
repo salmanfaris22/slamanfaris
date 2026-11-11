@@ -1,0 +1,21 @@
+---
+import { serviceCards } from '../../data/home';
+import SectionHead from '../SectionHead.astro';
+---
+<section id="services" class="section" aria-labelledby="services-title">
+  <div class="wrap">
+    <SectionHead tag="WHAT I DO" title="Code, AI, Marketing & Video in One Place" id="services-title" desc="One person across the design, the build and the promotion, so your website, your content and your enquiries work together." />
+    <ul class="bento-grid">
+      {serviceCards.map((card) => (
+        <li class="card bento-card">
+          <div>
+            <div class="bento-top"><span class="chip">{card.chip}</span></div>
+            <h3 class="bento-title"><a href={card.href}>{card.title}</a></h3>
+            <p class="bento-text">{card.text}</p>
+          </div>
+          <div class="bento-foot"><a class="text-link" href={card.href}>Explore service ↗</a><div class="tag-row">{card.tags.map((tag) => <span class="tag">{tag}</span>)}</div></div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

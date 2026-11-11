@@ -1,0 +1,243 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/portfolio",
+      "destination": "/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/:path*",
+      "destination": "/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/about-salman-faris",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/skills",
+      "destination": "/about/#skills",
+      "permanent": true
+    },
+    {
+      "source": "/experience",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/training",
+      "destination": "/courses/",
+      "permanent": true
+    },
+    {
+      "source": "/events",
+      "destination": "/workshops/",
+      "permanent": true
+    },
+    {
+      "source": "/locations/calicut",
+      "destination": "/locations/kozhikode/",
+      "permanent": true
+    },
+    {
+      "source": "/full-stack-developer-calicut",
+      "destination": "/services/full-stack-development/",
+      "permanent": true
+    },
+    {
+      "source": "/web-developer-calicut",
+      "destination": "/services/website-development-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/react-developer-kerala",
+      "destination": "/services/react-nextjs-development/",
+      "permanent": true
+    },
+    {
+      "source": "/nextjs-developer-kerala",
+      "destination": "/services/react-nextjs-development/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-website-developer-kerala",
+      "destination": "/services/ai-web-development/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-automation-developer-kerala",
+      "destination": "/services/ai-agent-automation/",
+      "permanent": true
+    },
+    {
+      "source": "/ecommerce-website-development-kerala",
+      "destination": "/services/ecommerce-development/",
+      "permanent": true
+    },
+    {
+      "source": "/digital-marketer-calicut",
+      "destination": "/services/digital-marketer-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/digital-marketing-kerala",
+      "destination": "/services/digital-marketer-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/seo-expert-calicut",
+      "destination": "/services/seo-services/",
+      "permanent": true
+    },
+    {
+      "source": "/local-seo-kerala",
+      "destination": "/services/local-seo/",
+      "permanent": true
+    },
+    {
+      "source": "/social-media-marketing-calicut",
+      "destination": "/services/social-media-marketing/",
+      "permanent": true
+    },
+    {
+      "source": "/video-editor-calicut",
+      "destination": "/services/video-editor-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/video-editing-services-kerala",
+      "destination": "/services/video-editor-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/motion-graphics-designer-kerala",
+      "destination": "/services/motion-graphics/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-video-editor-kerala",
+      "destination": "/services/ai-video-editing/",
+      "permanent": true
+    },
+    {
+      "source": "/ui-ux-designer-kerala",
+      "destination": "/services/ui-ux-design/",
+      "permanent": true
+    },
+    {
+      "source": "/services/full-stack-developer-calicut",
+      "destination": "/services/full-stack-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/digital-marketing-expert-calicut",
+      "destination": "/services/digital-marketer-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-website-developer-kerala",
+      "destination": "/services/ai-web-development/",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-video-editing-calicut",
+      "destination": "/services/ai-video-editing/",
+      "permanent": true
+    },
+    {
+      "source": "/services/web-development",
+      "destination": "/services/website-development-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/services/website-development",
+      "destination": "/services/website-development-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/services/video-editing",
+      "destination": "/services/video-editor-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/services/digital-marketing",
+      "destination": "/services/digital-marketer-calicut/",
+      "permanent": true
+    },
+    {
+      "source": "/services/technical-seo",
+      "destination": "/services/seo-services/",
+      "permanent": true
+    },
+    {
+      "source": "/services/motion-graphics-designer-kerala",
+      "destination": "/services/motion-graphics/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://www.facebook.com; form-action 'self' mailto:; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ]
+}

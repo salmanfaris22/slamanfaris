@@ -1,0 +1,27 @@
+---
+import PageHero from '../components/PageHero.astro';
+import { profile } from '../data/portfolio';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, webPageNode } from '../lib/schema';
+const path = '/privacy/';
+const title = 'Privacy Policy | Salman Faris';
+const description = 'How salmanfaris.in handles your data: what enquiry forms collect, how analytics and consent work, and how to ask for your details to be removed.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Privacy', path }];
+const structuredData = [webPageNode(path, title, description), breadcrumbNode(path, crumbs)];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="LEGAL" title="Privacy Policy" lead="Last updated 7 November 2026." />
+  <section class="page-section"><div class="wrap prose">
+    <h2>What is collected</h2>
+    <p>If you send an enquiry, you share your name, contact details and message. These are used only to reply to you and to discuss your project or course. They are not sold or shared for marketing.</p>
+    <h2>Enquiry forms</h2>
+    <p>Forms on this site open your own email or WhatsApp app with the message ready to send, or send it through a form service if one is configured. Nothing is stored on this website itself.</p>
+    <h2>Analytics and cookies</h2>
+    <p>This site may use Google Analytics, Microsoft Clarity and similar tools to understand which pages are useful. They only load after you accept them in the consent notice, and you can change your choice below. Clarity can record how pages are used, with text and form inputs masked.</p>
+    <p><button type="button" class="btn btn-glass btn-copy" data-consent-reset>Change my analytics choice</button></p>
+    <h2>Your choices</h2>
+    <p>To see, correct or delete details you have shared, email <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
+    <h2>Hosting</h2>
+    <p>This site is hosted on Vercel, which keeps standard server logs such as IP addresses to deliver and protect the site.</p>
+  </div></section>
+</PageShell>

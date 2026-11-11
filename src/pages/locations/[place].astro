@@ -1,0 +1,45 @@
+---
+import ContactBlock from '../../components/ContactBlock.astro';
+import FaqList from '../../components/FaqList.astro';
+import PageHero from '../../components/PageHero.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { places, type Place } from '../../data/locations';
+import { projectById } from '../../data/portfolio';
+import PageShell from '../../layouts/PageShell.astro';
+import { serviceBySlug } from '../../lib/services';
+import { breadcrumbNode, faqNode, webPageNode } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return places.map((place) => ({ params: { place: place.slug }, props: { place } }));
+}
+const { place } = Astro.props as { place: Place };
+const path = `/locations/${place.slug}/`;
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Services', path: '/services/' }, { name: place.tag, path }];
+const structuredData = [webPageNode(path, place.seoTitle, place.description), breadcrumbNode(path, crumbs), faqNode(path, place.faqs)];
+---
+<PageShell pageTitle={place.seoTitle} pageDescription={place.description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag={place.tag} title={place.h1}>
+    <blockquote class="quote answer"><p>{place.answer}</p></blockquote>
+  </PageHero>
+  <section class="page-section" aria-label="Details">
+    <div class="wrap grid-3">
+      {place.paragraphs.map((item) => <div class="card"><h2 class="mini-title">{item.heading}</h2><p class="mini-text">{item.text}</p></div>)}
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="place-services">
+    <div class="wrap">
+      <h2 class="block-title" id="place-services" style="margin-bottom:20px">Services available</h2>
+      <ul class="bento-grid">{place.services.map(serviceBySlug).map((s) => <li class="card"><h3 class="mini-title"><a class="text-link" href={`/services/${s.slug}/`}>{s.h1}</a></h3><p class="mini-text">{s.audience}</p></li>)}</ul>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="place-projects">
+    <div class="wrap">
+      <h2 class="block-title" id="place-projects" style="margin-bottom:20px">Related work</h2>
+      <div class="bento-grid">{place.projects.map(projectById).map((project) => <ProjectCard project={project} />)}</div>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="place-faq">
+    <div class="wrap"><h2 class="block-title" id="place-faq" style="margin-bottom:20px">Common questions</h2><FaqList faqs={place.faqs} /></div>
+  </section>
+  <section class="page-section"><div class="wrap"><ContactBlock tag="NEXT STEP" title="Tell me about your project." text="A short description, your timeline and a rough budget range are enough to start." headingId="cta-title" /></div></section>
+</PageShell>

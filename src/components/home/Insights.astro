@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import { postPath } from '../../lib/blog';
+import SectionHead from '../SectionHead.astro';
+const posts = (await getCollection('blog')).sort((a, b) => b.data.published.getTime() - a.data.published.getTime()).slice(0, 3);
+---
+<section id="insights" class="section" aria-labelledby="insights-title">
+  <div class="wrap">
+    <SectionHead tag="ARTICLES & INSIGHTS" title="Notes From the Work" id="insights-title" desc="Practical guides and first-hand build notes." />
+    <div class="bento-grid">
+      {posts.map((post) => (
+        <article class="card bento-card">
+          <div>
+            <div class="bento-top"><span class="chip">{post.data.categoryName}</span></div>
+            <h3 class="bento-title"><a href={postPath(post)}>{post.data.title}</a></h3>
+            <p class="bento-text">{post.data.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="section-desc" style="margin-top:28px"><a class="text-link" href="/blog/">Read all articles</a></p>
+  </div>
+</section>

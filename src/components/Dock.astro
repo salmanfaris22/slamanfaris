@@ -1,0 +1,28 @@
+---
+interface Props { home?: boolean; }
+const { home = false } = Astro.props;
+const links = [
+  { label: 'About', href: home ? '#about' : '/about/' },
+  { label: 'Services', href: home ? '#services' : '/services/' },
+  { label: 'Portfolio', href: home ? '#flagships' : '/projects/' },
+  { label: 'Courses', href: home ? '#courses' : '/courses/' },
+  { label: 'Blog', href: home ? '#insights' : '/blog/' },
+  { label: 'Contact', href: home ? '#contact' : '/contact/' },
+];
+const path = Astro.url.pathname;
+---
+<header class="dock-wrap">
+  <nav class="dock" aria-label="Main navigation">
+    <a class="dock-brand" href={home ? '#home' : '/'} aria-label="Salman Faris home">
+      <span class="monogram" aria-hidden="true">SF</span>
+      <span class="dock-label" aria-hidden="true" dir="ltr">SALMAN.</span>
+    </a>
+    <div class="dock-links">
+      {links.map((link) => <a href={link.href} class:list={['dock-link', { 'is-active': !home && link.href === path }]} aria-current={!home && link.href === path ? 'page' : undefined}>{link.label}</a>)}
+    </div>
+    <div class="dock-end">
+      <span class="dock-status" title="Open for new projects"><i class="pulse"></i><span>Available</span></span>
+      <a class="dock-cta" href={home ? '#contact' : '/contact/'} data-cta="dock_start_project">Start a project <span aria-hidden="true">→</span></a>
+    </div>
+  </nav>
+</header>

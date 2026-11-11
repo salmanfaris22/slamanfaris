@@ -1,13 +1,95 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import {projects} from '../../data/portfolio';
-export function getStaticPaths() { return projects.map(project=>({params:{id:project.id},props:{project}})); }
-const { project } = Astro.props;
+import PageHero from '../../components/PageHero.astro';
+import { projects, type Project } from '../../data/portfolio';
+import PageShell from '../../layouts/PageShell.astro';
+import { serviceBySlug } from '../../lib/services';
+import { absolute, breadcrumbNode, PERSON_ID, webPageNode } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: Project };
+const path = `/projects/${project.id}/`;
+const isConcept = project.status === 'concept';
+const title = `${project.title}${isConcept ? ' (Concept)' : ''} | Salman Faris`;
+const description = project.description;
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Portfolio', path: '/projects/' }, { name: project.title, path }];
+const related = project.services.map(serviceBySlug);
+const structuredData = [
+  webPageNode(path, title, description),
+  breadcrumbNode(path, crumbs),
+  {
+    '@type': 'CreativeWork',
+    '@id': `${absolute(path)}#work`,
+    name: project.title,
+    description,
+    url: absolute(path),
+    genre: project.discipline,
+    keywords: project.tools.join(', '),
+    dateModified: project.updated,
+    creator: { '@id': PERSON_ID },
+    ...(project.image ? { image: absolute(project.image) } : {}),
+    ...(project.repoUrl ? { sameAs: project.repoUrl } : {}),
+  },
+];
 ---
-<Layout interactive={false} pageTitle={`${project.title} — Salman Faris`} pageDescription={project.description}>
-  <header class="site-header section-shell"><a class="wordmark" href="/" aria-label="Salman Faris home">sf<span>®</span></a><a href="/#work" class="text-link">← All work</a></header>
-  <main id="main" class="section-shell" style="padding-top:60px;padding-bottom:80px;max-width:1100px">
-    <p class="eyebrow">{project.year} / {project.discipline}</p><h1 style="font-size:clamp(44px,7vw,100px);margin:24px 0;line-height:1.1">{project.title}</h1><img src={project.image} alt={`${project.title} concept artwork`} width="1200" height="850" style="width:100%;border-radius:4px"/>
-    <p class="dialog-description">{project.description}</p><div class="tool-tags">{project.tools.map(tool=><span>{tool}</span>)}</div><div class="dialog-columns"><div><h2>The idea</h2><p>{project.challenge}</p></div><div><h2>The approach</h2><p>{project.approach}</p></div></div><p class="concept-note">Concept showcase · Placeholder media · No client affiliation</p><a class="button button-lime" href="/#contact">Let’s create something like this ↗</a>
-  </main>
-</Layout>
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <span data-view-event="project_view" data-view-label={project.id} hidden></span>
+  <PageHero crumbs={crumbs} tag={project.discipline} title={project.title} lead={project.description}>
+    <p class="chip" style="margin-top:18px">{isConcept ? 'Concept. Not client work.' : project.client}</p>
+    <div class="page-actions">
+      {project.liveUrl && <a class="btn btn-red" href={project.liveUrl} target="_blank" rel="noopener noreferrer">View live site</a>}
+      {project.repoUrl && <a class="btn btn-glass" href={project.repoUrl} target="_blank" rel="noopener noreferrer">View source</a>}
+    </div>
+  </PageHero>
+  {project.image && (
+    <section class="page-section" style="padding-top:12px" aria-label="Project image">
+      <div class="wrap"><div class="cover"><img src={project.image} alt={project.imageAlt ?? `${project.title} project image`} width="1200" height="750" loading="lazy" decoding="async" /></div></div>
+    </section>
+  )}
+  <section class="page-section" aria-labelledby="case-title">
+    <div class="wrap grid-2">
+      <div class="card">
+        <h2 class="mini-title" id="case-title">{isConcept ? 'The idea' : 'The problem'}</h2>
+        <p class="mini-text">{project.challenge}</p>
+      </div>
+      <div class="card">
+        <h2 class="mini-title">{isConcept ? 'The approach' : 'The solution'}</h2>
+        <p class="mini-text">{project.approach}</p>
+      </div>
+      {project.objective && <div class="card"><h2 class="mini-title">Objective</h2><p class="mini-text">{project.objective}</p></div>}
+      <div class="card"><h2 class="mini-title">Who it was for</h2><p class="mini-text">{project.client}</p></div>
+    </div>
+  </section>
+  {project.process && (
+    <section class="page-section" aria-labelledby="build-title">
+      <div class="wrap">
+        <h2 class="block-title" id="build-title" style="margin-bottom:18px">How it was built</h2>
+        <ol class="steps">{project.process.map((step, index) => <li class="step"><span class="step-num" aria-hidden="true">0{index + 1}</span><p class="mini-text" style="font-size:15px">{step}</p></li>)}</ol>
+      </div>
+    </section>
+  )}
+  <section class="page-section" aria-labelledby="stack-title">
+    <div class="wrap about-grid">
+      <div>
+        <h2 class="block-title" id="stack-title">Technology and tools</h2>
+        <div class="tag-row" style="margin-top:14px">{project.tools.map((tool) => <span class="tech-tag">{tool}</span>)}</div>
+      </div>
+      {project.results && (
+        <div>
+          <h2 class="block-title">Status and results</h2>
+          <ul class="spec-list" style="font-size:15px;margin-top:14px">{project.results.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      )}
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="next-title">
+    <div class="wrap">
+      <h2 class="block-title" id="next-title" style="margin-bottom:18px">Related services</h2>
+      <ul class="bento-grid">{related.map((item) => <li class="card"><h3 class="mini-title"><a class="text-link" href={`/services/${item.slug}/`}>{item.h1}</a></h3><p class="mini-text">{item.audience}</p></li>)}</ul>
+      <div class="page-actions"><a class="btn btn-red" href="/contact/#project" data-cta={`project_${project.id}`}>Start a project</a><a class="btn btn-glass" href="/projects/">All projects</a></div>
+      {isConcept && <p class="note" style="margin-top:18px">Concept showcase. Placeholder media. No client affiliation.</p>}
+    </div>
+  </section>
+</PageShell>

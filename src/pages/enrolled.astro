@@ -1,0 +1,9 @@
+---
+import PageHero from '../components/PageHero.astro';
+import PageShell from '../layouts/PageShell.astro';
+---
+<PageShell pageTitle="Check your enrolment | Salman Faris" pageDescription="Check your payment receipt and contact Salman Faris to confirm course enrolment, access details and the next steps." noindex={true}>
+  <PageHero crumbs={[{ name: 'Home', path: '/' }, { name: 'Courses', path: '/courses/' }, { name: 'Check enrolment', path: '/enrolled/' }]} tag="THANK YOU" title="Confirm Your Enrolment" lead="Check the status on your Razorpay receipt. Visiting this page does not confirm a payment. Contact me with your payment reference to confirm enrolment and access.">
+    <div class="page-actions"><a class="btn btn-red" href="/contact/#course">Contact me</a><a class="btn btn-glass" href="/courses/">Back to courses</a></div>
+  </PageHero>
+</PageShell>

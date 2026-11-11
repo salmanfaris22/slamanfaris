@@ -1,0 +1,62 @@
+---
+import ContactBlock from '../components/ContactBlock.astro';
+import FaqList from '../components/FaqList.astro';
+import PageHero from '../components/PageHero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { processSteps } from '../data/home';
+import { projectById } from '../data/portfolio';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, faqNode, webPageNode } from '../lib/schema';
+
+const path = '/best-developer-in-kerala/';
+const pageTitle = 'Developer in Kerala: Full-Stack, React and Next.js | Salman Faris';
+const pageDescription = 'Looking for a developer in Kerala? Salman Faris builds websites, web apps and APIs with React, Next.js, TypeScript, Node.js and Go, with a video editor’s eye for detail.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Developer in Kerala', path }];
+
+const faqs = [
+  { q: 'Who is the best developer in Kerala?', a: 'The right developer depends on your project, so there is no single objective answer. Salman Faris is a full-stack developer based in Calicut, Kerala, who also works in video and motion design. Look at the work, compare it with others, and then talk through your project.' },
+  { q: 'Where can I hire a full-stack developer in Kerala?', a: 'Salman Faris is based in Kozhikode and works remotely, so clients in Kochi, Thiruvananthapuram, Thrissur, Kannur, Malappuram and Wayanad can work with him the same way as clients anywhere else.' },
+  { q: 'Does Salman Faris develop websites using Next.js?', a: 'Yes. Next.js is one of the main tools for sites that need server rendering or search-friendly pages. He also uses React and Astro, depending on what the project needs.' },
+];
+const structuredData = [webPageNode(path, pageTitle, pageDescription), breadcrumbNode(path, crumbs), faqNode(path, faqs)];
+const featured = ['media-360-concept', 'nexgo'].map(projectById);
+const areas = [
+  { title: 'Custom websites', text: 'Landing pages, company sites and portfolios, designed around your message and built to load fast on phones.', href: '/services/website-development-calicut/' },
+  { title: 'Web applications', text: 'Dashboards and product interfaces in React and Next.js, with clean state handling and accessible components.', href: '/services/react-nextjs-development/' },
+  { title: 'Backend and APIs', text: 'REST APIs and data layers with Node.js, Go, TypeScript, MongoDB and SQL, connected to the frontend without fuss.', href: '/services/full-stack-development/' },
+  { title: 'UI/UX and motion', text: 'Interface design in Figma, and purposeful animation that supports the content.', href: '/services/ui-ux-design/' },
+];
+---
+<PageShell pageTitle={pageTitle} pageDescription={pageDescription} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="FULL-STACK DEVELOPER · KERALA, INDIA" title="Developer in Kerala for Websites, Web Apps and Digital Experiences" lead="I’m Salman Faris. I build fast, well-designed websites and web applications with React, Next.js and TypeScript, and I bring a video editor’s attention to motion and detail to every project.">
+    <div class="page-actions"><a class="btn btn-red" href="/contact/#project" data-cta="kerala_start">Start a project</a><a class="btn btn-glass" href="#featured">See selected work</a></div>
+  </PageHero>
+  <section class="page-section" aria-labelledby="k-build">
+    <div class="wrap">
+      <h2 class="block-title" id="k-build" style="margin-bottom:20px">What I build</h2>
+      <ul class="grid-2">{areas.map((area) => <li class="card"><h3 class="mini-title"><a class="text-link" href={area.href}>{area.title}</a></h3><p class="mini-text">{area.text}</p></li>)}</ul>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="k-who">
+    <div class="wrap body-copy">
+      <h2 class="block-title" id="k-who">One developer for the design, motion and code</h2>
+      <p>Most of my projects combine three things: a site that tells a story, moves with intention and runs on a solid backend. That means one person who understands the whole job, and fewer handoffs for you. For content-first sites I often use Astro, which ships very little JavaScript. I choose the tool based on what the project needs.</p>
+    </div>
+  </section>
+  <section class="page-section" id="featured" aria-labelledby="k-featured">
+    <div class="wrap">
+      <h2 class="block-title" id="k-featured" style="margin-bottom:20px">Featured work</h2>
+      <div class="bento-grid">{featured.map((project) => <ProjectCard project={project} />)}</div>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="k-process">
+    <div class="wrap">
+      <h2 class="block-title" id="k-process" style="margin-bottom:18px">How a project runs</h2>
+      <ol class="steps">{processSteps.map((step, index) => <li class="step"><span class="step-num" aria-hidden="true">0{index + 1}</span><div><h3 class="step-title">{step.title}</h3><p class="step-text">{step.text}</p></div></li>)}</ol>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="k-faq">
+    <div class="wrap"><h2 class="block-title" id="k-faq" style="margin-bottom:20px">Frequently asked questions</h2><FaqList faqs={faqs} /></div>
+  </section>
+  <section class="page-section"><div class="wrap"><ContactBlock tag="NEXT STEP" title="Tell me about your project." text="A short description, your timeline and a rough budget range are enough to start." headingId="cta-title" /></div></section>
+</PageShell>

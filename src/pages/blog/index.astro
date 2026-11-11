@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import PageHero from '../../components/PageHero.astro';
+import PageShell from '../../layouts/PageShell.astro';
+import { blogCategories, postPath } from '../../lib/blog';
+import { absolute, breadcrumbNode, webPageNode } from '../../lib/schema';
+
+const path = '/blog/';
+const title = 'Blog: Web, AI, SEO and Video Notes | Salman Faris';
+const description = 'Practical articles by Salman Faris on web development, AI, SEO, digital marketing and video editing, with first-hand notes from real projects.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path }];
+const posts = (await getCollection('blog')).sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+const structuredData = [
+  webPageNode(path, title, description, { mainEntity: { '@type': 'ItemList', itemListElement: posts.map((post, i) => ({ '@type': 'ListItem', position: i + 1, name: post.data.title, url: absolute(postPath(post)) })) } }, 'CollectionPage'),
+  breadcrumbNode(path, crumbs),
+];
+const categories = blogCategories.filter((category) => posts.some((post) => post.data.category === category.slug));
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="ARTICLES AND INSIGHTS" title="Notes From the Work" lead="Practical guides and first-hand build notes on web development, AI, search, marketing and video." />
+  <section class="page-section" aria-label="Articles">
+    <div class="wrap">
+      <div class="tag-row" style="margin-bottom:24px">{categories.map((category) => <a class="tech-tag" href={`/blog/${category.slug}/`} style="text-decoration:none">{category.name}</a>)}</div>
+      <div class="bento-grid">
+        {posts.map((post) => (
+          <article class="card bento-card">
+            <div>
+              <div class="bento-top"><span class="chip">{post.data.categoryName}</span></div>
+              <h2 class="bento-title"><a href={postPath(post)}>{post.data.title}</a></h2>
+              <p class="bento-text">{post.data.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageShell>

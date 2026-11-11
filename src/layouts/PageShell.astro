@@ -1,0 +1,15 @@
+---
+// Standard inner page: dock, main, footer, toast. The home page composes these itself.
+import Dock from '../components/Dock.astro';
+import Footer from '../components/Footer.astro';
+import Toast from '../components/Toast.astro';
+import Layout from './Layout.astro';
+const props = Astro.props;
+---
+<Layout {...props}>
+  <Dock />
+  <main id="main"><slot /></main>
+  <Footer />
+  <Toast />
+  <script>import '../scripts/site';</script>
+</Layout>

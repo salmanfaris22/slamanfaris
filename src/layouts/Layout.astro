@@ -1,36 +1,108 @@
 ---
 import '../styles/global.css';
-interface Props { interactive?: boolean; pageTitle?: string; pageDescription?: string; }
-const { interactive = true, pageTitle, pageDescription } = Astro.props;
-const title = pageTitle || 'Salman Faris — Video Editor, Motion Designer & Creative Developer';
-const description = pageDescription || 'Story, motion, and code. Explore the creative world of Salman Faris — video editor, motion designer, and full-stack developer.';
+import { SITE_URL } from '../data/portfolio';
+import { personNode, websiteNode } from '../lib/schema';
+
+interface Props {
+  pageTitle?: string;
+  pageDescription?: string;
+  /** Extra JSON-LD nodes for this page. Person and WebSite are always included. */
+  structuredData?: Record<string, unknown>[];
+  noindex?: boolean;
+  ogType?: 'website' | 'article' | 'profile';
+  ogImage?: string;
+  ogImageAlt?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  lang?: string;
+  dir?: 'ltr' | 'rtl';
+  ogLocale?: string;
+  /** Language versions of this page. Must be reciprocal across all of them. */
+  alternates?: { hreflang: string; href: string }[];
+}
+
+const {
+  pageTitle,
+  pageDescription,
+  structuredData = [],
+  noindex = false,
+  ogType = 'website',
+  ogImage = '/images/og.png',
+  ogImageAlt = 'Salman Faris, full stack developer, AI web developer and video editor in Calicut',
+  publishedTime,
+  modifiedTime,
+  lang = 'en-IN',
+  dir = 'ltr',
+  ogLocale = 'en_IN',
+  alternates = [],
+} = Astro.props;
+
+const title = pageTitle || 'Salman Faris | Full Stack Developer, AI Web Developer & Video Editor';
+const description = pageDescription || 'Salman Faris is a full-stack developer, AI web developer and video editor in Calicut, Kerala. Websites, AI automation, SEO and motion design for businesses.';
+const site = Astro.site ?? new URL(SITE_URL);
+const canonical = new URL(Astro.url.pathname, site).href;
+const socialImage = new URL(ogImage, site).href;
+const graph = { '@context': 'https://schema.org', '@graph': [personNode(), websiteNode(), ...structuredData] };
+
+const ga4 = import.meta.env.PUBLIC_GA4_ID;
+const clarity = import.meta.env.PUBLIC_CLARITY_ID;
+const bing = import.meta.env.PUBLIC_BING_VERIFICATION;
+const gtm = import.meta.env.PUBLIC_GTM_ID;
+const metaPixel = import.meta.env.PUBLIC_META_PIXEL_ID;
+const analyticsConfig = JSON.stringify({ ga4: ga4 || '', clarity: clarity || '', gtm: gtm || '', metaPixel: metaPixel || '' });
+const hasAnalytics = Boolean(ga4 || clarity || gtm || metaPixel);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b0c0a" />
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="theme-color" content="#050505" />
+    <meta name="author" content="Salman Faris" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Salman Faris" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/images/og.png', Astro.site).href} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/images/og.png', Astro.site).href} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={new URL(alternate.href, site).href} />)}
+    {bing && <meta name="msvalidate.01" content={bing} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <title>{title}</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json" set:html={JSON.stringify(graph).replace(/</g, '\\u003c')} />
   </head>
-  <body>
+  <body data-analytics={analyticsConfig}>
     <a href="#main" class="skip-link">Skip to content</a>
     <slot />
-    {interactive && <script>import '../scripts/experience';</script>}
+    {hasAnalytics && (
+      <div id="consent" class="consent" role="dialog" aria-label="Analytics consent" hidden>
+        <span>This site uses analytics to see which pages help. They only run if you accept. <a href="/privacy/">Privacy policy</a>.</span>
+        <span class="consent-actions">
+          <button type="button" class="btn btn-glass btn-copy" data-consent="no">Decline</button>
+          <button type="button" class="btn btn-red btn-copy" data-consent="yes">Accept</button>
+        </span>
+      </div>
+    )}
+    <script>import '../scripts/track';</script>
   </body>
 </html>

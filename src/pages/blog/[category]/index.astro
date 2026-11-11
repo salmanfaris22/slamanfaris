@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import PageHero from '../../../components/PageHero.astro';
+import PageShell from '../../../layouts/PageShell.astro';
+import { blogCategories, MIN_POSTS_TO_INDEX, postPath } from '../../../lib/blog';
+import { breadcrumbNode, webPageNode } from '../../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return blogCategories
+    .filter((category) => posts.some((post) => post.data.category === category.slug))
+    .map((category) => ({ params: { category: category.slug }, props: { category, posts: posts.filter((post) => post.data.category === category.slug) } }));
+}
+
+const { category, posts } = Astro.props;
+const path = `/blog/${category.slug}/`;
+const title = `${category.name} Articles | Salman Faris`;
+const description = `${category.intro} Practical articles and first-hand notes by Salman Faris in Calicut, Kerala, with links to real projects.`;
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog/' }, { name: category.name, path }];
+const structuredData = [webPageNode(path, title, description, {}, 'CollectionPage'), breadcrumbNode(path, crumbs)];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData} noindex={posts.length < MIN_POSTS_TO_INDEX}>
+  <PageHero crumbs={crumbs} tag="BLOG" title={category.name} lead={category.intro} />
+  <section class="page-section" aria-label="Articles">
+    <div class="wrap bento-grid">
+      {posts.map((post) => (
+        <article class="card bento-card"><div><h2 class="bento-title"><a href={postPath(post)}>{post.data.title}</a></h2><p class="bento-text">{post.data.description}</p></div></article>
+      ))}
+    </div>
+  </section>
+</PageShell>

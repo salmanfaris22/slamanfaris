@@ -1,64 +1,56 @@
-# Salman Faris — Story. Motion. Code.
+# Salman Faris — personal brand, services and courses
 
-A dark, editorial portfolio built in **Astro 7 + TypeScript**, with Tailwind CSS, GSAP/ScrollTrigger, Lenis, React, Framer Motion, Lucide and a dynamically imported Three.js sculpture.
+Website for https://www.salmanfaris.in/. **Story. Motion. Code.**
+
+Static **Astro 7** site with a noir and crimson design, no UI framework and under 20 KB of JavaScript. Hosted on Vercel.
 
 ## Run
 
-Requires Node.js 22.23.4 or newer (Node 24 LTS recommended).
+Requires Node.js 22 or newer.
 
 ```sh
 npm install
-npm run dev
+npm run dev        # local site
+npm run build      # builds dist/, then runs the SEO check
+npm run preview    # serve the production build on :4321
+npm run check      # Astro and TypeScript diagnostics
+npm test           # Playwright, against a server on :4321
 ```
-
-Open the local address printed by Astro (normally `http://localhost:4321`).
-
-```sh
-npm run check       # Astro + TypeScript diagnostics
-npm run build       # Static output in dist/
-npm run preview     # Preview the production build
-npm test            # Playwright, against an existing server on :4321
-```
-
-The working copy includes dependencies assembled from the workstation’s offline cache. A new checkout should use `npm install`. No machine-local dependency paths are used by application source.
 
 ## Edit content
 
 | Content | File |
 |---|---|
-| Projects, tools, descriptions, email and social URLs | `src/data/portfolio.ts` |
-| Hero and contact copy | `src/pages/index.astro` |
-| About, skills, process and journey | `src/components/StorySections.astro` |
-| Colors, typography, page layout | `src/styles/global.css` |
-| About/process/timeline styles | `src/styles/story.css` |
-| Scroll, intro, cursor and magnetic motion | `src/scripts/experience.ts` |
-| 3D object and fallback | `src/scripts/sculpture.ts`, `src/components/Sculpture.astro` |
-| Sample artwork and social preview | `public/images/` |
+| Name, email, social links, WhatsApp | `src/data/portfolio.ts` (`profile`) |
+| Projects and case studies | `src/data/portfolio.ts` (`projects`) |
+| Home page text | `src/data/home.ts`, `src/components/home/` |
+| Service pages | `src/data/services/*.ts` |
+| Courses, status, fees, payment links | `src/data/courses.ts` |
+| Location pages | `src/data/locations.ts` |
+| Malayalam, Hindi, Tamil, Arabic | `src/data/i18n.ts` |
+| Blog articles | `src/content/blog/*.md` |
+| FAQs on the home page | `src/data/faqs.ts` |
+| Design tokens and styles | `src/styles/global.css` |
+| Build intro | `src/scripts/build-intro.ts`, `src/styles/build-intro.css` |
+| Redirects and security headers | `vercel.json` |
 
-The five showcased projects are **illustrative concepts**, not claimed client engagements. Replace artwork, project copy, actual project years and verified career history before a public portfolio launch. The portrait is explicitly marked as a placeholder. LinkedIn, Behance and WhatsApp remain labeled “coming soon” until confirmed URLs are supplied. Email, GitHub and Instagram come from the supplied profile context.
+## Quality gates
 
-## Architecture
+| Gate | Stops |
+|---|---|
+| `src/lib/services.ts` | Thin pages, duplicate keywords, titles, H1s or FAQs |
+| `scripts/seo-check.mjs` | Broken links, bad canonicals, missing metadata, invalid hreflang, fake rating schema |
 
-Astro produces complete static HTML, including five dedicated project pages. The gallery progressively mounts a small React island for filtering, scrolling and animated native-dialog project previews. Without JavaScript, project cards navigate to their static detail pages. No backend or secret keys are required.
+Both fail the build, so problems never reach production.
 
-Three.js loads dynamically on desktop only; mobile, reduced-motion and unavailable WebGL receive the finished SVG sculpture. Animation pauses offscreen and when the tab is hidden. Lenis preserves native touch scrolling, anchors and modal scrolling. GSAP contexts and WebGL resources are cleaned up on page exit. System reduced-motion preference bypasses the intro, smooth scrolling and decorative motion.
+## Honest content rules
 
-Fonts are self-hosted Geist Sans and Geist Mono, distributed under the SIL Open Font License (see `public/fonts/OFL.txt`). Concept artwork is original SVG, with fixed image dimensions and lazy loading; the sharing image is PNG.
+Every public claim must be true. Concepts stay labelled as concepts. Planned courses stay `planned` and noindex. No invented clients, reviews, numbers, offices or payment buttons.
 
-## Deployment
+## Build intro
 
-This is a static site: deploy **dist/** to any static host. Set `SITE_URL` at build time to the final origin so canonicals, sitemap and sharing URLs match your domain. The default matches the registered private Sites preview.
+On the first visit in a tab, a labelled crew of cursors rebuilds the page. It runs after the real page has painted, so it does not delay LCP. It is skipped for reduced motion, deep links, save-data and crawlers, and is original code. Use `?intro=1` to force it and `?intro=off` to turn it off.
 
-```sh
-SITE_URL=https://your-domain.example npm run build
-```
+## Deploy
 
-The Sites project identity is retained in `.openai/hosting.json`. Never store credentials in source control.
-
-## Launch checklist
-
-- Replace concept media and portrait with the actual work/profile.
-- Add verified career roles and dates.
-- Confirm contact details and add the remaining social profiles.
-- Set the final domain, rebuild, and check sharing cards.
-- Run the checks and browser tests against the final deployment.
+Push to `main` and Vercel deploys. Optional settings are listed in `.env.example`. Setup guides and the full audit are in `docs/seo/`, starting with `docs/seo/owner-actions.md`.

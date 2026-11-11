@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageHero from '../../../components/PageHero.astro';
+import { courseBySlug } from '../../../data/courses';
+import { profile } from '../../../data/portfolio';
+import PageShell from '../../../layouts/PageShell.astro';
+import { blogCategories, postPath } from '../../../lib/blog';
+import { serviceBySlug } from '../../../lib/services';
+import { absolute, breadcrumbNode, PERSON_ID, webPageNode, WEBSITE_ID } from '../../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { category: post.data.category, slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const path = postPath(post);
+const category = blogCategories.find((item) => item.slug === post.data.category)!;
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog/' }, { name: category.name, path: `/blog/${category.slug}/` }, { name: post.data.title, path }];
+const published = post.data.published.toISOString();
+const modified = (post.data.updated ?? post.data.published).toISOString();
+const displayDate = post.data.published.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const services = post.data.relatedServices.map(serviceBySlug);
+const course = post.data.relatedCourse ? courseBySlug(post.data.relatedCourse) : undefined;
+const allPosts = await getCollection('blog');
+const related = allPosts.filter((item) => item.id !== post.id).slice(0, 2);
+const structuredData = [
+  webPageNode(path, post.data.seoTitle, post.data.description),
+  breadcrumbNode(path, crumbs),
+  {
+    '@type': 'Article',
+    '@id': `${absolute(path)}#article`,
+    headline: post.data.title,
+    description: post.data.description,
+    url: absolute(path),
+    datePublished: published,
+    dateModified: modified,
+    inLanguage: 'en',
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntityOfPage: { '@id': `${absolute(path)}#webpage` },
+  },
+];
+---
+<PageShell pageTitle={post.data.seoTitle} pageDescription={post.data.description} structuredData={structuredData} ogType="article" publishedTime={published} modifiedTime={modified}>
+  <PageHero crumbs={crumbs} tag={post.data.categoryName} title={post.data.title}>
+    <p class="post-meta">By <a class="text-link" href="/about/">{profile.name}</a> · {displayDate}</p>
+  </PageHero>
+  <section class="page-section" style="padding-top:12px" aria-label="Article">
+    <div class="wrap">
+      <article class="prose"><Content /></article>
+      {post.data.sources.length > 0 && (
+        <div class="author-box">
+          <h2 class="explorer-title" style="margin-bottom:10px">SOURCES</h2>
+          <ul class="spec-list">{post.data.sources.map((source) => <li><a class="text-link" href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>)}</ul>
+        </div>
+      )}
+      <div class="card author-box">
+        <h2 class="mini-title">About the author</h2>
+        <p class="mini-text">{profile.name} is a full-stack developer, video editor and digital marketer based in Calicut, Kerala. <a class="text-link" href="/about/">More about him</a>.</p>
+      </div>
+      <div class="author-box">
+        <h2 class="block-title">Keep going</h2>
+        <ul class="spec-list" style="font-size:15px;margin-top:12px">
+          {services.map((service) => <li><a class="text-link" href={`/services/${service.slug}/`}>{service.h1}</a></li>)}
+          {course && <li><a class="text-link" href={`/courses/${course.slug}/`}>{course.title} course</a></li>}
+          {related.map((item) => <li><a class="text-link" href={postPath(item)}>{item.data.title}</a></li>)}
+        </ul>
+        <div class="page-actions"><a class="btn btn-red" href="/contact/#project" data-cta={`article_${post.id}`}>Discuss your project</a></div>
+      </div>
+    </div>
+  </section>
+</PageShell>

@@ -1,0 +1,46 @@
+---
+import EnquiryForm from '../components/EnquiryForm.astro';
+import PageHero from '../components/PageHero.astro';
+import { profile } from '../data/portfolio';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, webPageNode, PERSON_ID } from '../lib/schema';
+
+const path = '/contact/';
+const title = 'Contact Salman Faris | Hire a Developer in Calicut';
+const description = 'Contact Salman Faris in Calicut, Kerala about a website, app, video, SEO or course. Send a project enquiry or course enquiry, or email him directly.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Contact', path }];
+const structuredData = [webPageNode(path, title, description, { mainEntity: { '@id': PERSON_ID } }, 'ContactPage'), breadcrumbNode(path, crumbs)];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="DIRECT CONNECT" title="Have an Idea? Let’s Make It Real." lead="Big idea, small question, or just a hello. My inbox is always open." />
+  <section class="page-section" id="project" aria-labelledby="project-title">
+    <div class="wrap about-grid">
+      <div class="card">
+        <h2 class="block-title" id="project-title">Start a project</h2>
+        <p class="block-desc">Websites, apps, AI, video, SEO or marketing. A rough idea is enough to start.</p>
+        <EnquiryForm variant="project" />
+      </div>
+      <div class="card" id="course">
+        <h2 class="block-title">Ask about a course</h2>
+        <p class="block-desc">For fees, batches and which course fits you. See <a class="text-link" href="/courses/">all courses</a>.</p>
+        <EnquiryForm variant="course" />
+      </div>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="direct-title">
+    <div class="wrap about-grid">
+      <div class="body-copy">
+        <h2 class="block-title" id="direct-title">Reach me directly</h2>
+        <p>Email: <a class="text-link" href={`mailto:${profile.email}`}>{profile.email}</a></p>
+        {profile.whatsapp && <p>WhatsApp: <a class="text-link" href={`https://wa.me/${profile.whatsapp}`}>Message me</a></p>}
+        <p>Instagram: <a class="text-link" href={profile.instagram} target="_blank" rel="noopener noreferrer">{profile.instagramHandle}</a></p>
+        <p>GitHub: <a class="text-link" href={profile.github} target="_blank" rel="noopener noreferrer">salmanfaris22</a></p>
+      </div>
+      <div class="body-copy">
+        <h2 class="block-title">Where I am</h2>
+        <p>I am based in {profile.cityLocal} ({profile.city}), {profile.region}, {profile.country}, and work remotely with clients. All times are India Standard Time (UTC+5:30).</p>
+      </div>
+    </div>
+  </section>
+  <script>import '../scripts/enquiry';</script>
+</PageShell>

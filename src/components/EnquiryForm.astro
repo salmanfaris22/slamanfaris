@@ -1,0 +1,53 @@
+---
+import { courses, catalogue } from '../data/courses';
+import { profile } from '../data/portfolio';
+import { services } from '../lib/services';
+interface Props { variant: 'project' | 'course'; }
+const { variant } = Astro.props;
+const id = `enquiry-${variant}`;
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
+const courseOptions = [...new Set(['One-to-one mentorship', ...courses.map((c) => c.title), ...catalogue.flatMap((g) => g.titles.map((t) => t.title))])];
+---
+<form class="form" id={id} data-enquiry={variant} data-email={profile.email} data-whatsapp={profile.whatsapp} data-endpoint={endpoint} action={`mailto:${profile.email}`} method="post" enctype="text/plain" novalidate>
+  <div class="grid-2">
+    <div class="field"><label for={`${id}-name`}>Name</label><input id={`${id}-name`} name="Name" autocomplete="name" required maxlength="120" /></div>
+    <div class="field"><label for={`${id}-email`}>Email</label><input id={`${id}-email`} name="Email" type="email" autocomplete="email" required maxlength="160" /></div>
+  </div>
+  <div class="grid-2">
+    <div class="field"><label for={`${id}-phone`}>Contact number</label><input id={`${id}-phone`} name="Contact number" type="tel" autocomplete="tel" maxlength="24" /></div>
+    {variant === 'project' ? (
+      <div class="field"><label for={`${id}-service`}>Service required</label>
+        <select id={`${id}-service`} name="Service required" required>
+          <option value="">Choose a service</option>
+          {services.map((s) => <option>{s.name}</option>)}
+          <option>Something else</option>
+        </select></div>
+    ) : (
+      <div class="field"><label for={`${id}-course`}>Course</label>
+        <select id={`${id}-course`} name="Course" required>
+          <option value="">Choose a course</option>
+          {courseOptions.map((title) => <option>{title}</option>)}
+        </select></div>
+    )}
+  </div>
+  {variant === 'project' ? (
+    <div class="grid-2">
+      <div class="field"><label for={`${id}-budget`}>Budget range (optional)</label><input id={`${id}-budget`} name="Budget range" maxlength="60" /></div>
+      <div class="field"><label for={`${id}-contact`}>Preferred contact method</label>
+        <select id={`${id}-contact`} name="Preferred contact method"><option>Email</option><option>Phone</option><option>WhatsApp</option></select></div>
+    </div>
+  ) : (
+    <div class="grid-2">
+      <div class="field"><label for={`${id}-mode`}>Learning preference</label>
+        <select id={`${id}-mode`} name="Learning preference"><option>Online</option><option>Offline</option><option>No preference</option></select></div>
+      <div class="field"><label for={`${id}-batch`}>Preferred batch (optional)</label><input id={`${id}-batch`} name="Preferred batch" maxlength="60" /></div>
+    </div>
+  )}
+  <div class="field"><label for={`${id}-message`}>{variant === 'project' ? 'Project description' : 'Message'}</label><textarea id={`${id}-message`} name={variant === 'project' ? 'Project description' : 'Message'} required maxlength="4000"></textarea></div>
+  <div class="hp-field" aria-hidden="true"><label>Leave this empty<input name="company_site" tabindex="-1" autocomplete="off" /></label></div>
+  <div class="page-actions" style="margin-top:0">
+    <button type="submit" class="btn btn-red">{variant === 'project' ? 'Send enquiry' : 'Send course enquiry'}</button>
+  </div>
+  <p class="note" data-form-note>{endpoint ? 'Your details are used only to reply to this enquiry.' : 'Sending opens your email app with this message ready. Your details are used only to reply to it.'}</p>
+  <p class="form-status" role="status" data-form-status hidden></p>
+</form>

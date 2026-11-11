@@ -1,0 +1,22 @@
+---
+import { principles } from '../../data/home';
+import SectionHead from '../SectionHead.astro';
+---
+<section id="about" class="section" aria-labelledby="about-title">
+  <div class="wrap">
+    <SectionHead tag="CREATOR PROFILE" title="Background & Philosophy" id="about-title" />
+    <div class="card about-grid">
+      <div>
+        <p class="about-text">I’m Salman Faris, a <strong>full-stack developer, video editor and motion designer</strong> based in Calicut (Kozhikode), Kerala. I turn creative ideas into cinematic visuals and powerful digital experiences.</p>
+        <p class="about-text">I work where storytelling, design, motion and engineering meet. From the first frame to the final line of code, I care about how it feels and how it works. That includes <strong>being found</strong>: SEO and digital marketing are part of how I ship a site, not something added later.</p>
+        <blockquote class="quote">“Some think in frames. Some think in code. I see the whole picture.”</blockquote>
+        <p class="about-text" style="margin:20px 0 0"><a class="text-link" href="/about/">More about Salman Faris</a></p>
+      </div>
+      <ol class="steps">
+        {principles.map((item, index) => (
+          <li class="step"><span class="step-num" aria-hidden="true">0{index + 1}</span><div><h3 class="step-title">{item.title}</h3><p class="step-text">{item.text}</p></div></li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

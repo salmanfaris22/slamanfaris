@@ -1,0 +1,22 @@
+---
+import PageHero from '../components/PageHero.astro';
+import { profile } from '../data/portfolio';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, webPageNode } from '../lib/schema';
+const path = '/refund-policy/';
+const title = 'Refund and Cancellation Policy | Salman Faris';
+const description = 'How refunds and cancellations work for courses and services from Salman Faris. Terms are agreed in writing before you pay, and how to raise a request.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Refund policy', path }];
+const structuredData = [webPageNode(path, title, description), breadcrumbNode(path, crumbs)];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData} noindex={true}>
+  <PageHero crumbs={crumbs} tag="LEGAL" title="Refund and Cancellation Policy" lead="Last updated 7 November 2026." />
+  <section class="page-section"><div class="wrap prose">
+    <h2>Courses</h2>
+    <p>This site does not take payments directly at the moment. Fees, batch dates and the refund terms for a course are confirmed in writing before you pay, and those written terms apply.</p>
+    <h2>Client services</h2>
+    <p>Payment stages, cancellation and revisions are set out in the written proposal for each project.</p>
+    <h2>How to ask</h2>
+    <p>Send your request and payment reference to <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
+  </div></section>
+</PageShell>

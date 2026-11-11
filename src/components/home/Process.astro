@@ -1,0 +1,22 @@
+---
+import { benefits, processSteps } from '../../data/home';
+import SectionHead from '../SectionHead.astro';
+---
+<section id="process" class="section" aria-labelledby="process-title">
+  <div class="wrap">
+    <SectionHead tag="HOW IT WORKS" title="From Idea to Launch" id="process-title" desc="A good idea is only the beginning. Part intuition, part intention, and every detail has a purpose." />
+    <div class="card about-grid">
+      <ol class="steps">
+        {processSteps.map((step, index) => (
+          <li class="step"><span class="step-num" aria-hidden="true">0{index + 1}</span><div><h3 class="step-title">{step.title}</h3><p class="step-text">{step.text}</p></div></li>
+        ))}
+      </ol>
+      <div>
+        <h3 class="explorer-title" style="margin-bottom:14px">WHY BUSINESSES WORK WITH ME</h3>
+        <ul class="spec-list" style="gap:14px">
+          {benefits.map((item) => <li><span><strong style="color:var(--white)">{item.title}.</strong> {item.text}</span></li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

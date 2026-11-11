@@ -1,0 +1,61 @@
+---
+import ContactBlock from '../components/ContactBlock.astro';
+import PageHero from '../components/PageHero.astro';
+import { skillGroups, workAreas } from '../data/about';
+import { profile, projects } from '../data/portfolio';
+import PageShell from '../layouts/PageShell.astro';
+import { breadcrumbNode, PERSON_ID, webPageNode } from '../lib/schema';
+
+const path = '/about/';
+const title = 'About Salman Faris | Developer and Video Editor in Calicut';
+const description = 'Salman Faris is a creative technologist in Kozhikode, Kerala: full-stack developer, AI builder, video editor, SEO and digital marketer. His skills, work and how to hire him.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'About', path }];
+const structuredData = [webPageNode(path, title, description, { mainEntity: { '@id': PERSON_ID } }, 'ProfilePage'), breadcrumbNode(path, crumbs)];
+const built = projects.filter((project) => project.status === 'built').slice(0, 6);
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData} ogType="profile">
+  <PageHero crumbs={crumbs} tag="ABOUT" title="About Salman Faris" lead="From ideas to intelligent digital experiences: development, AI, motion and digital growth.">
+    <blockquote class="quote answer"><p>Salman Faris is a creative technologist based in Kozhikode (Calicut), Kerala, India. He builds websites and applications, develops AI-powered tools, edits video and motion graphics, and helps businesses grow online through SEO and digital marketing. He also creates practical learning for people who want real digital skills.</p></blockquote>
+  </PageHero>
+  <section class="page-section" aria-labelledby="work-areas">
+    <div class="wrap about-grid">
+      <div class="body-copy">
+        <h2 class="block-title" id="work-areas">What I do</h2>
+        <p>I work where storytelling, design, motion and engineering meet. From the first frame to the final line of code, I care about how it feels and how it works.</p>
+        <p>Most people specialise in one of these. I work across them because the problems clients bring rarely stay in one box. A business needs a website, and the website needs to be found, and being found needs content, and content needs video. Doing all of it means nothing gets lost between teams.</p>
+        <blockquote class="quote">Some think in frames. Some think in code. I see the whole picture.</blockquote>
+      </div>
+      <ul class="steps">
+        {workAreas.map((area) => <li><h3 class="mini-title"><a class="text-link" href={area.href}>{area.title}</a></h3><p class="mini-text">{area.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+  <section class="page-section" id="skills" aria-labelledby="skills-title">
+    <div class="wrap">
+      <h2 class="block-title" id="skills-title">Skills and tools</h2>
+      <p class="block-desc">Tools I use in real projects. Each one shows up in the public work or case studies on this site.</p>
+      <div class="grid-2">
+        {skillGroups.map((group) => <div class="card"><h3 class="mini-title" style="margin-bottom:12px">{group.title}</h3><div class="tag-row">{group.items.map((item) => <span class="tech-tag">{item}</span>)}</div></div>)}
+      </div>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="selected-title">
+    <div class="wrap">
+      <h2 class="block-title" id="selected-title" style="margin-bottom:18px">Selected projects</h2>
+      <ul class="bento-grid">{built.map((project) => <li class="card"><h3 class="mini-title"><a class="text-link" href={`/projects/${project.id}/`}>{project.title}</a></h3><p class="mini-text">{project.description}</p></li>)}</ul>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="collab-title">
+    <div class="wrap about-grid">
+      <div class="body-copy">
+        <h2 class="block-title" id="collab-title">How to work with me</h2>
+        <p>Send a short brief through the <a class="text-link" href="/contact/">contact page</a>. I reply with questions, then a written plan and quote. Work runs by call, chat and shared previews, and you can check progress at any stage.</p>
+      </div>
+      <div class="body-copy">
+        <h2 class="block-title">Where I work</h2>
+        <p>I am based in {profile.cityLocal} ({profile.city}), {profile.region}, and I work remotely, so <a class="text-link" href="/locations/kerala/">clients across Kerala</a> and <a class="text-link" href="/locations/india/">elsewhere in India and abroad</a> work with me the same way.</p>
+      </div>
+    </div>
+  </section>
+  <section class="page-section"><div class="wrap"><ContactBlock tag="DIRECT CONNECT" title="Let’s build something." headingId="cta-title" /></div></section>
+</PageShell>

@@ -1,0 +1,17 @@
+---
+import { techStack } from '../../data/home';
+import SectionHead from '../SectionHead.astro';
+---
+<section id="stack" class="section" aria-labelledby="stack-title">
+  <div class="wrap">
+    <SectionHead tag="TECHNICAL SPECTRUM" title="Technology & Creative Tools" id="stack-title" desc="The tools behind the projects on this page." />
+    <div class="stack-grid">
+      {techStack.map((group) => (
+        <div class="card">
+          <h3 class="stack-title">{group.title}</h3>
+          <div class="tag-row">{group.items.map((item) => <span class="tech-tag">{item}</span>)}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

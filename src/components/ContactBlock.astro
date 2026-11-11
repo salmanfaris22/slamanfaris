@@ -1,0 +1,44 @@
+---
+import { profile } from '../data/portfolio';
+interface Props { tag?: string; title?: string; text?: string; headingId?: string; home?: boolean; }
+const {
+  tag = 'DIRECT CONNECT',
+  title = 'Have an idea? Let’s make it real.',
+  text = 'Big idea, small question, or just a hello. My inbox is always open.',
+  headingId = 'contact-title',
+} = Astro.props;
+const socials = [
+  { label: 'github.com/salmanfaris22', aria: 'GitHub', url: profile.github, icon: 'M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22' },
+  { label: profile.instagramHandle, aria: 'Instagram', url: profile.instagram, icon: 'M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5ZM16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37ZM17.5 6.5h.01' },
+  ...(profile.linkedin ? [{ label: 'LinkedIn', aria: 'LinkedIn', url: profile.linkedin, icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2ZM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z' }] : []),
+  ...(profile.whatsapp ? [{ label: 'WhatsApp', aria: 'WhatsApp', url: `https://wa.me/${profile.whatsapp}`, icon: 'M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.4 8.4 0 1 1 21 11.5Z' }] : []),
+];
+const year = new Date().getFullYear();
+---
+<div class="card contact-card">
+  <div class="contact-glow" aria-hidden="true"></div>
+  <div class="contact-inner">
+    <p class="section-tag">{tag}</p>
+    <h2 class="contact-title" id={headingId} tabindex="-1">{title}</h2>
+    <p class="contact-sub">{text}</p>
+    <div class="email-box">
+      <a class="email-address" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <button type="button" class="btn btn-red btn-copy" data-copy={profile.email} aria-label="Copy email address">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+        <span>Copy Email Address</span>
+      </button>
+    </div>
+    <div class="social-row">
+      {socials.map((social) => (
+        <a class="social-pill" href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.aria}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={social.icon} /></svg>
+          <span>{social.label}</span>
+        </a>
+      ))}
+    </div>
+    <div class="contact-meta">
+      <span>© {year} {profile.name}. Designed and developed in {profile.city}, {profile.region}.</span>
+      <span class="brand-line">STORY. MOTION. CODE.</span>
+    </div>
+  </div>
+</div>

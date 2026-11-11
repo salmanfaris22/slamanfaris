@@ -1,0 +1,37 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import PageShell from '../../layouts/PageShell.astro';
+import { serviceGroups, services } from '../../lib/services';
+import { breadcrumbNode, webPageNode, absolute } from '../../lib/schema';
+
+const path = '/services/';
+const title = 'Services | Web, AI, Video and SEO by Salman Faris';
+const description = 'Web development, AI automation, video editing, motion design, SEO and digital marketing from Salman Faris in Calicut. Choose a service to see real examples.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Services', path }];
+const groupLabels = { Development: 'Development', AI: 'AI and automation', Creative: 'Editing, motion and design', Marketing: 'Digital marketing' };
+const structuredData = [
+  webPageNode(path, title, description, { mainEntity: { '@type': 'ItemList', itemListElement: services.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.h1, url: absolute(`/services/${s.slug}/`) })) } }, 'CollectionPage'),
+  breadcrumbNode(path, crumbs),
+];
+---
+<PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
+  <PageHero crumbs={crumbs} tag="SERVICES" title="What I Can Do for You" lead="Development, AI, motion and digital growth, from one person based in Calicut. Each service below has its own page with real examples, deliverables and common questions." />
+  {serviceGroups.map(({ group, items }) => (
+    <section class="page-section" aria-labelledby={`group-${group}`}>
+      <div class="wrap">
+        <h2 class="block-title" id={`group-${group}`} style="margin-bottom:20px">{groupLabels[group]}</h2>
+        <ul class="bento-grid">
+          {items.map((s) => (
+            <li class="card bento-card">
+              <div>
+                <h3 class="bento-title"><a href={`/services/${s.slug}/`}>{s.h1}</a></h3>
+                <p class="bento-text">{s.audience}</p>
+              </div>
+              <div class="bento-foot"><div class="tag-row">{s.tools.slice(0, 3).map((tool) => <span class="tag">{tool}</span>)}</div></div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+</PageShell>

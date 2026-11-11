@@ -1,0 +1,44 @@
+---
+import { alternatesFor, locales, type LocaleCopy } from '../../data/i18n';
+import { profile } from '../../data/portfolio';
+import PageShell from '../../layouts/PageShell.astro';
+import { PERSON_ID, webPageNode } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { lang: locale.code }, props: { locale } }));
+}
+const { locale } = Astro.props as { locale: LocaleCopy };
+const copy = locale.home;
+const path = `/${locale.code}/`;
+const structuredData = [webPageNode(path, copy.title, copy.description, { inLanguage: locale.code, mainEntity: { '@id': PERSON_ID } }, 'ProfilePage')];
+---
+<PageShell pageTitle={copy.title} pageDescription={copy.description} structuredData={structuredData} lang={locale.code} dir={locale.dir} ogLocale={locale.ogLocale} alternates={alternatesFor('home')}>
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="section-tag"><bdi>{copy.tag}</bdi></p>
+      <h1 class="page-title">{copy.h1}</h1>
+      <p class="page-lead">{copy.intro}</p>
+      <p class="chip" style="margin-top:18px"><span aria-hidden="true">●</span> {locale.ui.available}</p>
+      <div class="page-actions">
+        <a class="btn btn-red" href="/contact/#project" data-cta={`${locale.code}_project`}>{copy.cta}</a>
+        <a class="btn btn-glass" href={`/${locale.code}/courses/`}>{copy.coursesLink}</a>
+      </div>
+    </div>
+  </div>
+  <section class="page-section" aria-labelledby="l-services">
+    <div class="wrap">
+      <h2 class="block-title" id="l-services" style="margin-bottom:20px">{copy.servicesTitle}</h2>
+      <ul class="bento-grid">
+        {copy.services.map((service) => <li class="card"><h3 class="mini-title"><a class="text-link" href={service.href}>{service.name}</a></h3><p class="mini-text">{service.text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+  <section class="page-section" aria-labelledby="l-work">
+    <div class="wrap body-copy">
+      <h2 class="block-title" id="l-work">{copy.workTitle}</h2>
+      <p>{copy.workText}</p>
+      <p><a class="text-link" href="/projects/">{copy.workLink}</a></p>
+      <p dir="ltr" style="text-align:start"><a class="text-link" href={`mailto:${profile.email}`}>{profile.email}</a></p>
+    </div>
+  </section>
+</PageShell>

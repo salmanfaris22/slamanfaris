@@ -1,0 +1,10 @@
+---
+import PageHero from '../components/PageHero.astro';
+import PageShell from '../layouts/PageShell.astro';
+---
+<PageShell pageTitle="Payment not completed | Salman Faris" pageDescription="Your payment was not completed and you have not been charged by this site. Try again or ask for help." noindex={true}>
+  <span data-view-event="payment_failed" data-view-label="checkout_return" hidden></span>
+  <PageHero crumbs={[{ name: 'Home', path: '/' }, { name: 'Courses', path: '/courses/' }, { name: 'Payment not completed', path: '/payment-failed/' }]} tag="PAYMENT" title="Your Payment Did Not Go Through" lead="Nothing was completed. If money left your account, your bank or the payment provider will show the status, and you can send the reference for help.">
+    <div class="page-actions"><a class="btn btn-red" href="/courses/">Try again</a><a class="btn btn-glass" href="/contact/#course">Ask for help</a></div>
+  </PageHero>
+</PageShell>

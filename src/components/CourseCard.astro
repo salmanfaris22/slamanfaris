@@ -1,0 +1,22 @@
+---
+import { statusLabel, type Course } from '../data/courses';
+import { coursePayment } from '../lib/course-payment';
+interface Props { course: Course; }
+const { course } = Astro.props;
+const payment = coursePayment(course);
+const category = course.category === 'AI Development' ? 'AI' : course.category === 'Software Development' ? 'Web development' : course.category === 'Video Editing' ? 'Video editing' : course.category === 'Digital Marketing' ? 'Marketing' : course.category;
+---
+<article class="learn-card" data-course-category={category}>
+  <a class="learn-cover" href={`/courses/${course.slug}/`} tabindex="-1" aria-hidden="true"><img src={`/images/courses/${course.slug}.svg`} alt={`${course.title} course artwork`} width="720" height="405" loading="lazy" /></a>
+  <div class="learn-body">
+    <div class="learn-meta"><span>{category}</span><span>{course.level || (course.slug === 'golang-development' || course.slug === 'full-stack-development' ? 'Intermediate' : 'Beginner')}</span></div>
+    <h3><a href={`/courses/${course.slug}/`}>{course.title}</a></h3>
+    <p>{course.short}</p>
+    <span class="learn-status">{statusLabel[course.status]}</span>
+    <div class="learn-bottom"><strong>{course.fee || 'Fee to be announced'}</strong><a class="text-link" href={`/courses/${course.slug}/`}>View course <span aria-hidden="true">↗</span></a></div>
+    {payment && <a class="btn btn-red" href={payment} rel="noopener noreferrer" data-cta={`pay_${course.slug}`}>Enrol with Razorpay</a>}
+  </div>
+</article>
+<style>
+.learn-card{border:1px solid #ffffff16;border-radius:18px;background:#111216;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}.learn-card:hover{transform:translateY(-4px);border-color:#fa575775}.learn-card[hidden]{display:none}.learn-cover{display:block;overflow:hidden}.learn-cover img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}.learn-body{padding:24px;display:flex;flex-direction:column;gap:16px;flex:1}.learn-meta{display:flex;justify-content:space-between;gap:12px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#b7b7c1}.learn-body h3{font-size:22px;line-height:1.3}.learn-body h3 a{text-decoration:none}.learn-body p{font-size:14px;line-height:1.75;color:#a5a5af;flex:1}.learn-status{font-size:11px;color:#f2b9b9}.learn-bottom{border-top:1px solid #ffffff12;padding-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}.learn-bottom strong{font-size:12px;color:#ddd}.learn-bottom a{font-size:12px}@media(prefers-reduced-motion:reduce){.learn-card{transition:none}.learn-card:hover{transform:none}}
+</style>

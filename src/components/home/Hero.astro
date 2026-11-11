@@ -1,0 +1,56 @@
+---
+import { heroCards, heroStats, heroTags } from '../../data/home';
+---
+<section id="home" class="hero" aria-labelledby="hero-title">
+  <div class="hero-guides" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div class="hero-wordmark" aria-hidden="true">
+      <svg viewBox="0 0 1000 215" preserveAspectRatio="xMidYMid meet" focusable="false">
+        <text x="0" y="205" font-size="270" textLength="1000" lengthAdjust="spacingAndGlyphs">PORTFOLIO</text>
+      </svg>
+    </div>
+    <div class="hero-stage">
+      <div class="hero-left">
+        <p class="hero-script">Hello, I’m</p>
+        <h1 class="hero-title" id="hero-title">
+          <span class="hero-name">Salman Faris<i>.</i></span>
+          <span class="hero-role"><b aria-hidden="true">●</b><span>Full Stack Developer, AI Web Developer &amp; Video Editor in Calicut</span></span>
+        </h1>
+        <p class="hero-desc">From ideas to intelligent digital experiences: <strong>development, AI, motion</strong> and <strong>digital growth</strong>. Based in Calicut, working worldwide.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-red" data-cta="hero_hire">
+            <span>Hire me</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </a>
+          <a href="#flagships" class="btn btn-glass" data-cta="hero_explore"><span>Explore my work</span></a>
+          <a href="#courses" class="btn btn-glass" data-cta="hero_courses"><span>Courses</span></a>
+        </div>
+        <div class="hero-stats">
+          {heroStats.map((stat) => <div class="hero-stat"><span class="stat-value">{stat.value}</span><span class="stat-label">{stat.label}</span></div>)}
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="portrait">
+          <div class="portrait-panel" aria-hidden="true"></div>
+          <img src="/images/portrait.webp" srcset="/images/portrait-420.webp 420w, /images/portrait.webp 760w" sizes="(max-width: 480px) 160px, 380px" alt="Black and white illustrated portrait used by Salman Faris" class="portrait-img" width="760" height="950" loading="eager" fetchpriority="high" decoding="async" />
+          <p class="portrait-badge"><b aria-hidden="true">●</b><span>Available for new projects</span></p>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hud-stack">
+          {heroCards.map((card) => (
+            <a class="hud-card" href={card.href}>
+              <span class="hud-head"><span class="hud-index">{card.index}</span><span class="hud-tag">{card.tag}</span></span>
+              <span class="hud-title" style="display:block">{card.title}</span>
+              <span class="hud-text" style="display:block">{card.text}</span>
+            </a>
+          ))}
+          <div class="hud-tags">{heroTags.map((tag) => <span class="tech-tag">{tag}</span>)}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap">
+  <div class="divider" aria-hidden="true"><span>// STORY. MOTION. CODE.</span><i></i><span>INDEX [01 / 10]</span></div>
+</div>

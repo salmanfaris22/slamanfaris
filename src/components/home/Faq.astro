@@ -1,0 +1,11 @@
+---
+import { homeFaqs } from '../../data/faqs';
+import FaqList from '../FaqList.astro';
+import SectionHead from '../SectionHead.astro';
+---
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="wrap">
+    <SectionHead tag="QUICK ANSWERS" title="Frequently Asked Questions" id="faq-title" />
+    <FaqList faqs={homeFaqs} />
+  </div>
+</section>
