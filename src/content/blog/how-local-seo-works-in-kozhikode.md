@@ -47,4 +47,4 @@ Pages that just swap in a place name do not help anyone. Better content answers 
 4. Add real photos of your place and your work.
 5. Ask recent happy customers for an honest review.
 
-None of this is instant, and nobody can promise a place in the top three. It does build up over time. If you want help, see [local SEO services](/services/local-seo/) or [ask me to look at your listing](/contact/#project).
+None of this is instant, and nobody can promise a place in the top three. It does build up over time. If you want help, see [local SEO services](/services/local-seo/), take the [60-second marketing check](/best-freelance-digital-marketer-in-calicut/#health-check), or [ask me to look at your listing](/contact/#project).

@@ -15,7 +15,9 @@ const structuredData = [
 ];
 ---
 <PageShell pageTitle={title} pageDescription={description} structuredData={structuredData}>
-  <PageHero crumbs={crumbs} tag="SERVICES" title="What I Can Do for You" lead="Development, AI, motion and digital growth, from one person based in Calicut. Each service below has its own page with real examples, deliverables and common questions." />
+  <PageHero crumbs={crumbs} tag="SERVICES" title="What I Can Do for You" lead="Development, AI, motion and digital growth, from one person based in Calicut. Each service below has its own page with real examples, deliverables and common questions.">
+    <p class="mini-text" style="margin-top:20px;font-size:15px"><span class="chip" style="margin-right:10px">Marketing</span><a class="text-link" href="/best-freelance-digital-marketer-in-calicut/">Hiring a freelance digital marketer in Calicut? Start with the proof and 10 checks</a></p>
+  </PageHero>
   {serviceGroups.map(({ group, items }) => (
     <section class="page-section" aria-labelledby={`group-${group}`}>
       <div class="wrap">

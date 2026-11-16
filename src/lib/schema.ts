@@ -14,9 +14,9 @@ export const personNode = () => ({
   alternateName: profile.alternateName,
   url: home,
   email: `mailto:${profile.email}`,
-  jobTitle: ['Full Stack Developer', 'AI Web Developer', 'Video Editor', 'Motion Designer', 'Digital Marketer'],
-  description: `${profile.name} is a full-stack developer, AI web developer, video editor and motion designer based in ${profile.city} (${profile.cityLocal}), ${profile.region}, ${profile.country}.`,
-  knowsAbout: ['Web development', 'React', 'Next.js', 'TypeScript', 'Node.js', 'Go', 'AI automation', 'Search engine optimization', 'Digital marketing', 'Video editing', 'Motion graphics', 'Color grading', 'UI/UX design'],
+  jobTitle: ['Full Stack Developer', 'AI Web Developer', 'Video Editor', 'Motion Designer', 'Freelance Digital Marketer'],
+  description: `${profile.name} is a full-stack developer, AI web developer, video editor and freelance digital marketer based in ${profile.city} (${profile.cityLocal}), ${profile.region}, ${profile.country}.`,
+  knowsAbout: ['Digital marketing', 'Search engine optimization', 'Local SEO', 'Google Business Profile', 'Social media marketing', 'Content marketing', 'Online advertising', 'Conversion tracking', 'Web development', 'React', 'Next.js', 'TypeScript', 'Node.js', 'Go', 'AI automation', 'Video editing', 'Motion graphics', 'Color grading', 'UI/UX design'],
   address: { '@type': 'PostalAddress', addressLocality: profile.cityLocal, addressRegion: profile.region, addressCountry: 'IN' },
   sameAs: [profile.github, profile.linkedin, profile.instagram, profile.leetcode, profile.behance].filter(Boolean),
 });

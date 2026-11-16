@@ -31,6 +31,8 @@ export interface Service {
   /** Slugs of related services. */
   related: string[];
   cta: { label: string; title: string; text: string };
+  /** Optional callout under the hero that links to a closely related landing page. */
+  spotlight?: { href: string; label: string; text: string };
   updated: string;
 }
 

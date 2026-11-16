@@ -3,7 +3,7 @@
 export const heroCards = [
   { index: '01.', tag: 'CODE', title: 'Code & AI', text: 'Full-stack apps in React, Next.js, Node.js and Go, with AI features and automation built in.', href: '/services/full-stack-development/' },
   { index: '02.', tag: 'MOTION', title: 'Video & motion', text: 'Edits, colour grades and motion graphics in After Effects, Premiere Pro and DaVinci Resolve.', href: '/services/video-editor-calicut/' },
-  { index: '03.', tag: 'GROWTH', title: 'SEO & marketing', text: 'Technical SEO, local search and social content that bring the right people to your site.', href: '/services/digital-marketer-calicut/' },
+  { index: '03.', tag: 'GROWTH', title: 'Digital marketing', text: 'Freelance digital marketing in Calicut: SEO, local search, ads and reels that bring the right people to you.', href: '/best-freelance-digital-marketer-in-calicut/' },
 ];
 
 export const heroTags = ['React', 'Next.js', 'TypeScript', 'Go', 'After Effects', 'DaVinci Resolve'];

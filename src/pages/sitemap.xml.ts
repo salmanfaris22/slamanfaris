@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import { courses, isIndexable } from '../data/courses';
 import { alternatesFor, locales } from '../data/i18n';
 import { places } from '../data/locations';
+import { MARKETER_PATH, MARKETER_UPDATED } from '../data/marketer';
 import { projects, SITE_UPDATED } from '../data/portfolio';
 import { MIN_POSTS_TO_INDEX, blogCategories, postPath } from '../lib/blog';
 import { services } from '../lib/services';
@@ -18,6 +19,7 @@ export const GET: APIRoute = async ({ site }) => {
     { path: '/', lastmod: SITE_UPDATED, alternates: alternatesFor('home'), images: ['/images/portrait.webp'] },
     { path: '/courses/', lastmod: SITE_UPDATED, alternates: alternatesFor('courses') },
     ...staticPages.map((path) => ({ path, lastmod: SITE_UPDATED })),
+    { path: MARKETER_PATH, lastmod: MARKETER_UPDATED, images: ['/images/portrait.webp'] },
     ...services.map((service) => ({ path: `/services/${service.slug}/`, lastmod: service.updated })),
     ...projects.map((project) => ({ path: `/projects/${project.id}/`, lastmod: project.updated, images: project.image ? [project.image] : undefined })),
     ...courses.filter(isIndexable).map((course) => ({ path: `/courses/${course.slug}/`, lastmod: course.updated })),
