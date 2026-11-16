@@ -35,6 +35,7 @@ const structuredData = [
       <a class="btn btn-red" href={`/contact/?service=${encodeURIComponent(service.name)}#project`} data-cta={`service_${service.slug}`}>{service.cta.label}</a>
       <a class="btn btn-glass" href="#examples">See examples</a>
     </div>
+    {service.spotlight && <p class="mini-text" style="margin-top:22px;font-size:15px"><span class="chip" style="margin-right:10px">{service.spotlight.label}</span><a class="text-link" href={service.spotlight.href} data-cta={`spotlight_${service.slug}`}>{service.spotlight.text}</a></p>}
   </PageHero>
 
   <section class="page-section" aria-labelledby="intro-title">

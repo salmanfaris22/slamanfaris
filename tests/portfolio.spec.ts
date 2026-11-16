@@ -10,7 +10,7 @@ function watchErrors(page: Page) {
   return errors;
 }
 
-const routes = ['/', '/about/', '/services/', '/services/full-stack-development/', '/services/seo-services/', '/services/video-editor-calicut/', '/projects/', '/projects/lectern/', '/projects/after-hours/', '/courses/', '/courses/ai-web-development/', '/locations/kozhikode/', '/blog/', '/contact/', '/best-developer-in-kerala/', '/ml/', '/hi/courses/', '/ar/', '/workshops/', '/privacy/'];
+const routes = ['/', '/about/', '/services/', '/services/full-stack-development/', '/services/seo-services/', '/services/video-editor-calicut/', '/projects/', '/projects/lectern/', '/projects/after-hours/', '/courses/', '/courses/ai-web-development/', '/locations/kozhikode/', '/blog/', '/contact/', '/best-developer-in-kerala/', '/best-freelance-digital-marketer-in-calicut/', '/ml/', '/hi/courses/', '/ar/', '/workshops/', '/privacy/'];
 
 test('@desktop home page shows the brand, real H1 and working sections', async ({ page }) => {
   const errors = watchErrors(page);
@@ -217,4 +217,56 @@ test('@mobile course cards and mentorship fit the screen', async ({ page }) => {
   await page.screenshot({ path: '/tmp/portfolio-courses-mobile.png', fullPage: true });
   await page.getByRole('link', { name: 'Ask about mentorship', exact: true }).click();
   await expect(page.locator('#enquiry-course').getByLabel('Course', { exact: true })).toHaveValue('One-to-one mentorship');
+});
+
+const MARKETER = '/best-freelance-digital-marketer-in-calicut/';
+const checkAnswers = ['yes', 'no', 'yes', 'unsure', 'no', 'yes', 'no', 'yes', 'yes', 'no'];
+const answerLabel: Record<string, string> = { yes: 'Yes', no: 'No', unsure: 'Not sure' };
+
+test('@desktop marketer page scores the 60-second check and keeps claims honest', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto(MARKETER);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('best freelance digital marketer in Calicut');
+  await expect(page.locator('[data-meter-time]')).toHaveText(/^\d+\.\d{2} s$/);
+  const sets = page.locator('fieldset[data-weight]');
+  await expect(sets).toHaveCount(10);
+  for (const [index, value] of checkAnswers.entries()) await sets.nth(index).getByLabel(answerLabel[value], { exact: true }).check();
+  await expect(page.locator('[data-hc-score]')).toHaveText('50');
+  await expect(page.locator('[data-hc-band]')).toHaveText('Good start, clear gaps');
+  await expect(page.locator('[data-hc-fixes] li')).toHaveCount(3);
+  await expect(page.locator('[data-hc-fixes] li').first()).toContainText('Track calls');
+  await expect(page.locator('[data-hc-send]')).toHaveAttribute('href', /Marketing%20check%3A%2050%2F100/);
+  await page.getByRole('button', { name: 'Start again' }).click();
+  await expect(page.locator('[data-hc-score]')).toHaveText('0');
+  await expect(page.locator('[data-hc-progress]')).toHaveText('0 of 10 answered');
+  const schema = (await page.locator('script[type="application/ld+json"]').allTextContents()).join(' ');
+  expect(schema).toContain('"FAQPage"');
+  expect(schema).toContain('"Service"');
+  expect(schema).not.toMatch(/aggregateRating|"Review"/i);
+  await expect(page.locator('#reviews')).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
+
+test('@mobile marketer page fits a phone and the check works by touch', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto(MARKETER);
+  for (const id of ['proof', 'one-person', 'services', 'health-check', 'checklist', 'process', 'calicut', 'compare', 'pricing', 'about', 'faq']) {
+    await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `no overflow in ${id}`).toBe(true);
+  }
+  const sets = page.locator('fieldset[data-weight]');
+  for (let index = 0; index < 10; index += 1) await sets.nth(index).getByLabel('Yes', { exact: true }).tap();
+  await expect(page.locator('[data-hc-score]')).toHaveText('100');
+  await expect(page.locator('[data-hc-band]')).toHaveText('Strong base');
+  expect(errors).toEqual([]);
+});
+
+test('@nojs marketer page is readable without JavaScript', async ({ page }) => {
+  await page.goto(MARKETER);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('is the one who can prove it');
+  await expect(page.locator('fieldset[data-weight]')).toHaveCount(10);
+  await expect(page.locator('details.faq')).toHaveCount(13);
+  await expect(page.locator('[data-hc-band]')).toHaveText('Turn on JavaScript to see your score');
+  await expect(page.getByRole('button', { name: 'Start again' })).toBeHidden();
+  await expect(page.getByRole('heading', { name: /10 checks/ })).toBeVisible();
 });

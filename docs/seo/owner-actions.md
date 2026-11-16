@@ -2,6 +2,18 @@
 
 Everything else is built. These items need your accounts, your facts or your approval.
 
+## New: rank for "best freelance digital marketer in Calicut" (15 Nov 2026)
+
+Full plan, competitor table and measured results: [07-best-freelance-digital-marketer-calicut.md](07-best-freelance-digital-marketer-calicut.md).
+
+| # | Action | Why |
+|---|---|---|
+| 1 | Merge the pull request, then Search Console: Request indexing for `/best-freelance-digital-marketer-in-calicut/` | Nothing ranks until it is live and crawled |
+| 2 | Google Business Profile (service-area, name "Salman Faris") + 5 real Google reviews | The map pack and Google's AI lists rely on them |
+| 3 | Confirm you run Google or Meta ads for clients | The page lists ads as a service. If not, delete that card in `src/data/marketer.ts` |
+| 4 | Add real certificates, clients (with permission) and review links to `src/data/marketer.ts` | Each one switches on a proof section |
+| 5 | Link the new page from LinkedIn, Instagram bio, GitHub and a footer credit on media360concept.com | A 10-day-old domain needs links |
+
 ## Do first
 
 | # | Action | Why |

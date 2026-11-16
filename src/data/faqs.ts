@@ -5,7 +5,7 @@ export interface Faq { q: string; a: string; }
 export const homeFaqs: Faq[] = [
   {
     q: 'Who is Salman Faris?',
-    a: 'Salman Faris is a full-stack developer, AI web developer, video editor and motion designer based in Calicut (Kozhikode), Kerala, India. He builds websites and web applications with React, Next.js, Node.js and Go, and edits video and motion graphics with After Effects, Premiere Pro and DaVinci Resolve.',
+    a: 'Salman Faris is a full-stack developer, AI web developer, video editor and freelance digital marketer based in Calicut (Kozhikode), Kerala, India. He builds websites and web applications with React, Next.js, Node.js and Go, edits video and motion graphics with After Effects, Premiere Pro and DaVinci Resolve, and handles SEO and digital marketing for businesses.',
   },
   {
     q: 'What services does Salman Faris offer?',

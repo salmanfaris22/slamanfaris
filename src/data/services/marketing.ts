@@ -3,13 +3,14 @@ import type { Service } from './types';
 export const marketingServices: Service[] = [
   {
     slug: 'digital-marketer-calicut', group: 'Marketing', name: 'Digital marketing',
-    keyword: 'digital marketer in Calicut',
-    secondary: ['freelance digital marketer Calicut', 'digital marketing expert Kozhikode', 'digital marketing services Calicut', 'digital marketing freelancer Kerala', 'digital marketing Kerala', 'remote digital marketing services'],
-    seoTitle: 'Digital Marketer in Calicut | Salman Faris',
-    description: 'Freelance digital marketer in Calicut connecting your website, search, content and social media so each part brings real enquiries. Plain reports, no fake promises.',
-    h1: 'Digital Marketer in Calicut',
+    keyword: 'digital marketing services in Calicut',
+    secondary: ['digital marketing in Calicut', 'digital marketing Kozhikode', 'digital marketing services Kerala', 'online marketing services Calicut', 'remote digital marketing services'],
+    seoTitle: 'Digital Marketing Services in Calicut | Salman Faris',
+    description: 'Digital marketing services in Calicut that connect your website, search, content and ads, so each part brings real enquiries. Plain reports, no fake promises.',
+    h1: 'Digital Marketing Services in Calicut',
     tag: 'DIGITAL MARKETING',
-    answer: 'Salman Faris is a freelance digital marketer in Calicut who connects your website, search presence and content so people can find you and enquire. Because he also builds the sites and edits the videos, strategy and production stay in one place, and every action is tied to a measured enquiry.',
+    answer: 'Digital marketing services in Calicut from Salman Faris connect your website, search presence, content and ads so people can find you and enquire. Because he also builds the sites and edits the videos, strategy and production stay in one place, and every action is tied to a measured enquiry.',
+    spotlight: { href: '/best-freelance-digital-marketer-in-calicut/', label: 'Comparing marketers?', text: 'How to choose the best freelance digital marketer in Calicut: 10 checks, plus a free 60-second marketing score.' },
     audience: 'For small businesses, startups and personal brands in Kerala that want enquiries, not just followers.',
     intro: [
       'Digital marketing fails most often at the joins. The ads point to a slow page, the page does not match the post, and nobody can tell which channel produced the enquiry. My work focuses on those joins.',
@@ -38,14 +39,14 @@ export const marketingServices: Service[] = [
     deliverables: ['A written audit', 'A prioritised plan', 'Tracking setup', 'A monthly report in plain language', 'Content calendar'],
     local: 'I work from Calicut and know how businesses here sell: through WhatsApp, referrals and Instagram. Plans are built for Kozhikode, Malappuram, Wayanad, Kannur and the wider Kerala market, with remote support for businesses elsewhere.',
     faqs: [
-      { q: 'Who is the best digital marketer in Calicut?', a: 'There is no independent ranking, and many "best" lists are paid or self-published. Judge marketers by case studies, measured results and how they report. Salman Faris is a freelance digital marketer in Calicut who builds and measures the work himself.' },
+      { q: 'Which digital marketing services does a small business need first?', a: 'Usually a fast website with a clear enquiry path, a complete Google Business Profile and basic tracking. Content and ads work better once those are in place, because every visitor then has a reason and a simple way to contact you.' },
       { q: 'How can digital marketing help a small business?', a: 'It helps people who already need what you sell find you and trust you. For most small businesses, that means a clear website, a good Google presence and useful content, measured by enquiries.' },
       { q: 'Freelancer or digital marketing agency?', a: 'An agency gives you a team and more capacity. A freelancer gives you one accountable person and a closer relationship. For a small budget with a focused goal, a freelancer is often a good start.' },
       { q: 'Do you guarantee results?', a: 'No, and you should be careful of anyone who does. I promise clear work, honest reporting and quick changes when something is not working.' },
     ],
     related: ['seo-services', 'social-media-marketing', 'website-development-calicut'],
     cta: { label: 'Discuss your project', title: 'Want marketing you can measure?', text: 'Tell me about your business and where your customers come from today.' },
-    updated: '2026-11-07',
+    updated: '2026-11-15',
   },
   {
     slug: 'seo-services', group: 'Marketing', name: 'SEO services',

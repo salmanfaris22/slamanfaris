@@ -25,6 +25,7 @@ npm test           # Playwright, against a server on :4321
 | Projects and case studies | `src/data/portfolio.ts` (`projects`) |
 | Home page text | `src/data/home.ts`, `src/components/home/` |
 | Service pages | `src/data/services/*.ts` |
+| Digital marketer landing page, its checks, FAQs and proof slots | `src/data/marketer.ts` |
 | Courses, status, fees, payment links | `src/data/courses.ts` |
 | Location pages | `src/data/locations.ts` |
 | Malayalam, Hindi, Tamil, Arabic | `src/data/i18n.ts` |

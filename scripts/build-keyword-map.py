@@ -78,12 +78,21 @@ ROWS = [
  ('Figma designer Kerala', S+'ui-ux-design/', 'Transactional', 'Founders', 'Kerala', 'Low', 'Project enquiry'),
  ('creative developer Kerala', S+'ui-ux-design/', 'Transactional', 'Brands', 'Kerala', 'Medium', 'Project enquiry'),
  # Marketing
- ('digital marketer in Calicut', S+'digital-marketer-calicut/', 'Local service', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
- ('best digital marketer in Calicut', S+'digital-marketer-calicut/', 'Commercial investigation', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
- ('freelance digital marketer Calicut', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
- ('freelance digital marketer Kerala', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'Kerala', 'High', 'Project enquiry'),
- ('digital marketing expert Kozhikode', S+'digital-marketer-calicut/', 'Local service', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
- ('digital marketing services Calicut', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ # Digital marketer (person) -> landing page. Digital marketing (service) -> service page.
+ ('best freelance digital marketer in Calicut', '/best-freelance-digital-marketer-in-calicut/', 'Commercial investigation', 'Businesses comparing freelancers', 'Calicut', 'High', 'Project enquiry'),
+ ('best digital marketer in Calicut', '/best-freelance-digital-marketer-in-calicut/', 'Commercial investigation', 'Businesses comparing marketers', 'Calicut', 'High', 'Project enquiry'),
+ ('best digital marketer in Kozhikode', '/best-freelance-digital-marketer-in-calicut/', 'Commercial investigation', 'Businesses comparing marketers', 'Calicut', 'High', 'Project enquiry'),
+ ('freelance digital marketer in Calicut', '/best-freelance-digital-marketer-in-calicut/', 'Transactional', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ ('digital marketer in Calicut', '/best-freelance-digital-marketer-in-calicut/', 'Local service', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ ('digital marketer in Kozhikode', '/best-freelance-digital-marketer-in-calicut/', 'Local service', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ ('freelance digital marketer Kerala', '/best-freelance-digital-marketer-in-calicut/', 'Transactional', 'Small businesses', 'Kerala', 'High', 'Project enquiry'),
+ ('digital marketing expert Kozhikode', '/best-freelance-digital-marketer-in-calicut/', 'Local service', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ ('best digital marketing strategist in Calicut', '/best-freelance-digital-marketer-in-calicut/', 'Commercial investigation', 'Businesses comparing marketers', 'Calicut', 'Medium', 'Project enquiry'),
+ ('how to choose a digital marketer', '/best-freelance-digital-marketer-in-calicut/', 'Informational', 'Business owners', 'Global', 'Medium', 'Marketing check'),
+ ('freelance digital marketer cost Kozhikode', '/best-freelance-digital-marketer-in-calicut/', 'Commercial investigation', 'Small businesses', 'Calicut', 'Medium', 'Project enquiry'),
+ ('digital marketing services in Calicut', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ ('digital marketing in Calicut', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'Calicut', 'High', 'Project enquiry'),
+ ('digital marketing services Kerala', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'Kerala', 'Medium', 'Project enquiry'),
  ('digital marketing freelancer India', S+'digital-marketer-calicut/', 'Transactional', 'Small businesses', 'India', 'Medium', 'Project enquiry'),
  ('remote digital marketing services', '/locations/india/', 'Transactional', 'Remote clients', 'Global', 'Low', 'Project enquiry'),
  ('SEO expert in Calicut', S+'seo-services/', 'Local service', 'Businesses', 'Calicut', 'High', 'Project enquiry'),
@@ -135,6 +144,8 @@ NOT_TARGETED = [
  ('performance marketing freelancer Calicut', 'No ad campaign evidence yet.'),
  ('Top 10 full stack developers in Kerala', 'A self-written ranking of competitors is not credible.'),
  ('closest digital marketer near me', 'Near-me results depend on a verified Google Business Profile.'),
+ ('digital marketing agency in Calicut', 'Salman is one freelancer, not an agency. The landing page explains when an agency is the better choice.'),
+ ('top 10 digital marketers in Calicut', 'A list page ranking other people would need their permission and fair, verified data.'),
 ]
 
 def strip(text):

@@ -10,5 +10,6 @@
 | [04-backlinks-and-profiles.md](04-backlinks-and-profiles.md) | Backlink plan and paste-ready profile text |
 | [05-analytics-and-search-setup.md](05-analytics-and-search-setup.md) | GA4, GTM, Clarity, Search Console, Bing, Google Business Profile, payments |
 | [06-test-report.md](06-test-report.md) | Measured test results, before and after |
+| [07-best-freelance-digital-marketer-calicut.md](07-best-freelance-digital-marketer-calicut.md) | Competitor analysis, build and owner actions for "best freelance digital marketer in Calicut" |
 
 Rebuild the keyword map with `npm run build && python3 scripts/build-keyword-map.py`.

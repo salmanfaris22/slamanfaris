@@ -83,6 +83,7 @@ const hasAnalytics = Boolean(ga4 || clarity || gtm || metaPixel);
     <meta name="twitter:image:alt" content={ogImageAlt} />
     {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={new URL(alternate.href, site).href} />)}
     {bing && <meta name="msvalidate.01" content={bing} />}
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Site summary for AI assistants" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />

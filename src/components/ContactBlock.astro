@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
     </div>
     <div class="social-row">
       {socials.map((social) => (
-        <a class="social-pill" href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.aria}>
+        <a class="social-pill" href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.aria === social.label ? social.aria : `${social.aria}: ${social.label}`}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={social.icon} /></svg>
           <span>{social.label}</span>
         </a>
